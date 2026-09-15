@@ -35,6 +35,10 @@ async function checkTarget(t) {
   const base = t.url.replace(/\/$/, "");
   const r = await fetchSafe(base + "/");
   if (!r) { add(`check.transport.${t.slug}`, t.self ? "warn" : "fail", `${t.label} not reachable${t.self ? " (not deployed yet)" : ""}`, "HTTPS reachable with HSTS", { source_url: base }); return; }
+  // Before the first deploy the platform answers the reserved hostname with a 404 page of its own. Treat a
+  // non-2xx answer from this site's own URL as "not deployed yet" (one warning) rather than failing the
+  // header checks against a page that is not ours.
+  if (t.self && (r.status < 200 || r.status >= 300)) { add(`check.transport.${t.slug}`, "warn", `${t.label} answered HTTP ${r.status}: not deployed yet`, "HTTPS 200 with HSTS and hardening headers once deployed", { source_url: base }); return; }
   const H = k => r.headers.get(k);
   const hsts = H("strict-transport-security");
   let redirect = "not tested";

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-15T03:27:53.780Z",
+  "generated_at": "2026-09-15T03:34:31.506Z",
   "scope": "full",
   "gates_included": true,
-  "run_id": "local-202609150327",
-  "source_commit": "n/a",
+  "run_id": "local-202609150334",
+  "source_commit": "a2805a2a9dd740a907c4ccd735a8d73544e06484",
   "targets": [
     {
       "slug": "trust-center",
@@ -22,40 +22,10 @@
       "control_ids": [
         "NC-PR-06"
       ],
-      "result": "pass",
-      "observed": "HTTPS 404; HSTS present (max-age=63072000; includeSubDomains; preload); http redirects to https",
-      "expected": "HTTPS 200, HSTS header present, plain HTTP redirects",
+      "result": "warn",
+      "observed": "This site answered HTTP 404: not deployed yet",
+      "expected": "HTTPS 200 with HSTS and hardening headers once deployed",
       "source_url": "https://nimbus-trust-center.vercel.app"
-    },
-    {
-      "id": "check.headers.trust-center.csp",
-      "control_ids": [
-        "NC-PR-07"
-      ],
-      "result": "fail",
-      "observed": "CSP missing",
-      "expected": "Content-Security-Policy present with hash-pinned or self-only script-src",
-      "source_url": "https://nimbus-trust-center.vercel.app"
-    },
-    {
-      "id": "check.headers.trust-center.hardening",
-      "control_ids": [
-        "NC-PR-07"
-      ],
-      "result": "fail",
-      "observed": "present: none; missing: x-content-type-options, frame protection, referrer-policy, permissions-policy",
-      "expected": "nosniff, frame protection, referrer policy, permissions policy",
-      "source_url": "https://nimbus-trust-center.vercel.app"
-    },
-    {
-      "id": "check.security_txt.trust-center",
-      "control_ids": [
-        "NC-ID-07"
-      ],
-      "result": "fail",
-      "observed": "no security.txt published on This site",
-      "expected": "security.txt at /.well-known/security.txt",
-      "source_url": "https://nimbus-trust-center.vercel.app/.well-known/security.txt"
     },
     {
       "id": "check.transport.nimbus",
@@ -112,7 +82,7 @@
         "NC-PR-04"
       ],
       "result": "pass",
-      "observed": "55 files scanned, 0 secret pattern hits",
+      "observed": "56 files scanned, 0 secret pattern hits",
       "expected": "no API key, token, or private key patterns in the repository"
     },
     {
@@ -191,8 +161,8 @@
         "NC-PR-16",
         "NC-PR-20"
       ],
-      "result": "pass",
-      "observed": "npm test exit 0; 104 checks: static 25, endpoint 33, ui 46",
+      "result": "fail",
+      "observed": "npm test exit 1; 104 checks: static 25, endpoint 33, ui 46",
       "expected": "build, eval and all gates pass",
       "source_url": "https://github.com/TC26-max/Nimbus_Trust_Center/actions"
     },
@@ -202,7 +172,7 @@
         "NC-DE-01"
       ],
       "result": "pass",
-      "observed": "evidence job ran at 2026-09-15T03:27:53.780Z with 19 checks",
+      "observed": "evidence job ran at 2026-09-15T03:34:31.506Z with 16 checks",
       "expected": "daily run recorded"
     }
   ]

@@ -90,6 +90,16 @@ curl -s https://nimbus-trust-center.vercel.app/.well-known/security.txt
 
 Then in a browser: the status pill should read "AI mapper on: gemini-2.5-flash", the mapper should answer with "AI-proposed", and the Trust Center should show a live evidence timestamp.
 
+The bundle committed before the deploy recorded this site as "not deployed yet". Run the job once more now that the site is live, so the page carries passing checks about itself, then push (with the Git integration from step 5, the push deploys):
+
+```bash
+npm run evidence
+npm test
+git add -A
+git commit -m "evidence: first run against the live site"
+git push
+```
+
 ## 7. Measure the model path and publish the number
 
 Twenty gold questions against the live endpoint, paced under the fair-use limit (about a minute). The Tested tab then shows the model-path accuracy instead of "not yet measured".
