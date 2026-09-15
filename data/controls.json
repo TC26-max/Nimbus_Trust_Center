@@ -1,0 +1,2574 @@
+{
+  "controls": [
+    {
+      "id": "NC-GV-01",
+      "function": "GV",
+      "title": "Security program charter and accountable executive",
+      "statement": "A written charter names the executive accountable for cybersecurity and AI risk, defines the security lead role, and gives the program authority to set policy and report to the board quarterly.",
+      "plain": "Someone senior is on the hook for security, in writing, and reports to the board about it.",
+      "ai": false,
+      "owner_role": "Chief Operating Officer",
+      "frequency": "annual",
+      "test_procedure": "Obtain the current charter; confirm the accountable executive, the reporting cadence, and the approval date within the last 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.RR-01",
+          "GV.RR-02",
+          "GV.RR-03"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC1.2",
+          "CC1.3"
+        ],
+        "airmf": [
+          "GOVERN 2.3"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-07"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "Simulated document for a simulated company.",
+      "last_evidence": "2026-02-10"
+    },
+    {
+      "id": "NC-GV-02",
+      "function": "GV",
+      "title": "Risk appetite statement and quarterly risk register review",
+      "statement": "The board approves a risk appetite statement. The risk register is reviewed quarterly; every risk has an owner, inherent and residual ratings, a treatment decision, and a key risk indicator.",
+      "plain": "Leadership has said how much risk is acceptable, and the list of risks is reviewed every three months against that line.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Inspect the register: every risk has owner, ratings, treatment, and KRI; the last review date is within 90 days; the appetite statement is approved.",
+      "evidence_type": "attestation",
+      "automation": "check.risk_register",
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.RM-02",
+          "GV.RM-06",
+          "ID.RA-05",
+          "ID.RA-06"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC3.1",
+          "CC3.2"
+        ],
+        "airmf": [
+          "MAP 1.5"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-07"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "The register content is simulated; the completeness check at build time is real.",
+      "last_evidence": "2026-07-08"
+    },
+    {
+      "id": "NC-GV-03",
+      "function": "GV",
+      "title": "Legal, regulatory and contractual requirements register",
+      "statement": "A register lists every law, regulation, standard, and customer contract clause that creates a security or AI obligation, the owner, and the controls that satisfy it. It is reviewed semiannually and when a new jurisdiction or customer type is added.",
+      "plain": "A list of every rule the company must follow, who owns it, and which safeguards cover it.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "semiannual",
+      "test_procedure": "Compare the register with the drivers used across the control library; every driver appears with an owner and a review date within 180 days.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.OC-03"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC3.1",
+          "CC2.3"
+        ],
+        "airmf": [
+          "GOVERN 1.1"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610",
+        "traiga",
+        "tx_breach",
+        "pci_saq_a",
+        "gdpr",
+        "hipaa_baa",
+        "eu_ai_act"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-07",
+        "R-08",
+        "R-10"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "The driver definitions on this site are the register.",
+      "last_evidence": "2026-06-30"
+    },
+    {
+      "id": "NC-GV-04",
+      "function": "GV",
+      "title": "Policy set approved, versioned and reviewed annually",
+      "statement": "Security and AI policies are version-controlled, approved by the accountable executive, communicated to staff, and reviewed at least every 12 months or after a material change.",
+      "plain": "The rulebook exists, has an owner, and gets re-read once a year so it does not rot.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "For each policy file, confirm version, owner role, approval, and a last-reviewed date within its review window.",
+      "evidence_type": "document",
+      "automation": "check.policy_freshness",
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.PO-01",
+          "GV.PO-02"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC5.3",
+          "CC2.2"
+        ],
+        "airmf": [
+          "GOVERN 1.4"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-07"
+      ],
+      "linked_policies": [
+        "POL-01",
+        "POL-02",
+        "POL-03",
+        "POL-04",
+        "POL-05",
+        "POL-06",
+        "POL-07",
+        "POL-08"
+      ],
+      "notes": "Policy text is simulated. The freshness check reads the review dates from the policy files and is real."
+    },
+    {
+      "id": "NC-GV-05",
+      "function": "GV",
+      "title": "Framework adoption decision recorded for the Texas safe harbor tier",
+      "statement": "Leadership records which recognized framework the company adopts for its size tier, the date of adoption, and the process for adopting framework revisions, so the SB 2610 safe harbor conditions are met and can be evidenced.",
+      "plain": "The company wrote down which security standard it follows and why, because Texas law rewards that with legal protection after a breach.",
+      "ai": false,
+      "owner_role": "Chief Operating Officer",
+      "frequency": "annual",
+      "test_procedure": "Obtain the adoption memo; confirm the employee count places the company in the 100 to 249 tier, the adopted framework is NIST CSF 2.0, and the revision process is stated.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.OC-03",
+          "GV.RM-04"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC3.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-07"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "Texas SB 2610 took effect September 1, 2025. The tier thresholds are from the statute; the memo is simulated.",
+      "last_evidence": "2026-01-20"
+    },
+    {
+      "id": "NC-GV-06",
+      "function": "GV",
+      "title": "Security awareness and social engineering training",
+      "statement": "All staff complete security awareness training at hire and annually, including recognizing social engineering and reporting incidents. Completion is tracked.",
+      "plain": "Everyone learns how attackers trick people, and how to report something suspicious.",
+      "ai": false,
+      "owner_role": "People Operations Lead",
+      "frequency": "annual",
+      "test_procedure": "Sample ten staff; confirm completion records within 12 months and at hire.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.AT-01",
+          "GV.RR-04"
+        ],
+        "cis": [
+          {
+            "id": "14.1",
+            "ig": 1
+          },
+          {
+            "id": "14.2",
+            "ig": 1
+          },
+          {
+            "id": "14.6",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC1.4",
+          "CC2.2"
+        ],
+        "airmf": [
+          "GOVERN 2.2"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01",
+        "R-14"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "",
+      "last_evidence": "2026-03-15"
+    },
+    {
+      "id": "NC-GV-07",
+      "function": "GV",
+      "title": "AI use policy and accountable AI owner",
+      "statement": "An AI use policy defines acceptable uses, prohibited uses, data that may be sent to AI systems, and approval steps. Each AI system has an accountable owner role, and executive leadership owns AI risk decisions.",
+      "plain": "There are written rules for how the company uses AI, and every AI system has a named owner.",
+      "ai": true,
+      "owner_role": "Chief Operating Officer",
+      "frequency": "annual",
+      "test_procedure": "Obtain the AI use policy; confirm prohibited uses, data rules, approval path, and that every inventory entry names an owner role.",
+      "evidence_type": "document",
+      "automation": "check.ai_inventory_complete",
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.PO-01",
+          "GV.RR-02"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC5.3",
+          "CC1.3"
+        ],
+        "airmf": [
+          "GOVERN 1.2",
+          "GOVERN 2.1",
+          "GOVERN 2.3"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-08",
+        "R-09",
+        "R-15"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "The policy is simulated; the owner-role completeness check across the inventory is real.",
+      "last_evidence": "2026-08-28"
+    },
+    {
+      "id": "NC-GV-08",
+      "function": "GV",
+      "title": "AI system and agent inventory with risk tiering",
+      "statement": "Every AI system, including internal tools and agents that can take actions, is inventoried with purpose, users, data classes, vendor and model, allowed actions, human oversight, logging, kill switch, owner, review date, and a risk tier. The inventory is the basis for the NIST AI RMF affirmative defense under Texas law.",
+      "plain": "A complete list of every AI system the company runs, what each is allowed to do, and who can switch it off.",
+      "ai": true,
+      "owner_role": "Security Lead",
+      "frequency": "on-change",
+      "test_procedure": "Confirm every production AI system appears; every entry has all required fields (the build fails otherwise); review dates are within 180 days.",
+      "evidence_type": "automated",
+      "automation": "check.ai_inventory_complete",
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.AM-02",
+          "GV.OC-03"
+        ],
+        "cis": [
+          {
+            "id": "2.1",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.1"
+        ],
+        "airmf": [
+          "GOVERN 1.6",
+          "MAP 1.1",
+          "MAP 2.1"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-08",
+        "R-09"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "The inventory on this site is the control. The three customer-facing assistants and this site's control mapper are real systems; one internal entry is simulated."
+    },
+    {
+      "id": "NC-GV-09",
+      "function": "GV",
+      "title": "Third-party risk program and vendor inventory",
+      "statement": "All service providers are inventoried, classified by criticality and data access, assessed before onboarding, and reviewed on a cadence set by tier. Assurance reports (SOC 2, ISO 27001) are collected where available.",
+      "plain": "The company knows which outside vendors it depends on, how sensitive each one is, and checks them before and after signing.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "Inspect the vendor register: every vendor has tier, data access, review date within cadence, and an assurance report status.",
+      "evidence_type": "attestation",
+      "automation": "check.vendor_register",
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.SC-01",
+          "GV.SC-04",
+          "GV.SC-06",
+          "GV.SC-07",
+          "ID.AM-04"
+        ],
+        "cis": [
+          {
+            "id": "15.1",
+            "ig": 1
+          },
+          {
+            "id": "15.2",
+            "ig": 2
+          },
+          {
+            "id": "15.3",
+            "ig": 2
+          },
+          {
+            "id": "15.5",
+            "ig": 3
+          }
+        ],
+        "soc2": [
+          "CC9.2"
+        ],
+        "airmf": [
+          "GOVERN 6.1",
+          "MANAGE 3.1"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-05",
+        "R-06"
+      ],
+      "linked_policies": [
+        "POL-05"
+      ],
+      "notes": "The three real vendors (Google, Vercel, GitHub) publish trust centers; those entries are real. The rest are simulated.",
+      "last_evidence": "2026-05-19"
+    },
+    {
+      "id": "NC-GV-10",
+      "function": "GV",
+      "title": "Vendor contracts carry security, breach-notice and subprocessor terms",
+      "statement": "Contracts with tier 1 and tier 2 vendors include security requirements, a breach notification window, subprocessor change notice, data location, and termination and data return provisions.",
+      "plain": "The paperwork with key vendors says they must protect data and tell the company quickly if something goes wrong.",
+      "ai": false,
+      "owner_role": "Legal and Finance Lead",
+      "frequency": "annual",
+      "test_procedure": "For each tier 1 and 2 vendor, confirm the clause checklist in the register is complete or an exception is recorded.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "partial",
+      "mappings": {
+        "csf": [
+          "GV.SC-05",
+          "GV.SC-10"
+        ],
+        "cis": [
+          {
+            "id": "15.4",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC9.2"
+        ],
+        "airmf": [
+          "GOVERN 6.1"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "gdpr",
+        "hipaa_baa"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-06",
+        "R-10"
+      ],
+      "linked_policies": [
+        "POL-05"
+      ],
+      "notes": "Status is partial by design: one simulated vendor has no breach-notice clause, tracked as an exception.",
+      "last_evidence": "2026-05-19"
+    },
+    {
+      "id": "NC-ID-01",
+      "function": "ID",
+      "title": "Inventory of systems, services and software",
+      "statement": "Production systems, cloud services, and software components are inventoried with owner, criticality, and data classification, and reconciled quarterly.",
+      "plain": "The company keeps an up-to-date list of what it runs and who owns each piece.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Sample five production services; confirm each appears with owner and classification; last reconciliation within 90 days.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.AM-01",
+          "ID.AM-02",
+          "ID.AM-05"
+        ],
+        "cis": [
+          {
+            "id": "1.1",
+            "ig": 1
+          },
+          {
+            "id": "2.1",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-04"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "",
+      "last_evidence": "2026-05-30"
+    },
+    {
+      "id": "NC-ID-02",
+      "function": "ID",
+      "title": "Data inventory and classification",
+      "statement": "Data types are inventoried and classified (public, internal, customer account, customer content, regulated), with handling rules per class and a retention schedule.",
+      "plain": "The company knows what kinds of data it holds and treats the sensitive kinds with extra care.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the data inventory; confirm classes, handling rules, retention periods, and a review within 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.AM-07",
+          "ID.AM-05"
+        ],
+        "cis": [
+          {
+            "id": "3.1",
+            "ig": 1
+          },
+          {
+            "id": "3.2",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "C1.1"
+        ],
+        "airmf": [
+          "MAP 1.1"
+        ]
+      },
+      "drivers": [
+        "gdpr",
+        "hipaa_baa",
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01",
+        "R-09"
+      ],
+      "linked_policies": [
+        "POL-04"
+      ],
+      "notes": "",
+      "last_evidence": "2026-04-22"
+    },
+    {
+      "id": "NC-ID-03",
+      "function": "ID",
+      "title": "Dependency vulnerability audit on every build and daily",
+      "statement": "Third-party software components are audited for known vulnerabilities on every build and by the daily evidence job; findings are recorded with severity.",
+      "plain": "The code libraries the site depends on are checked every day against public lists of known flaws.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "daily",
+      "test_procedure": "Read the latest evidence bundle; the dependency audit check ran within 2 days and reports counts by severity.",
+      "evidence_type": "automated",
+      "automation": "check.npm_audit",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.RA-01"
+        ],
+        "cis": [
+          {
+            "id": "7.1",
+            "ig": 1
+          },
+          {
+            "id": "16.4",
+            "ig": 2
+          },
+          {
+            "id": "16.5",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-04"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "Runs npm audit in the evidence job. The site has zero runtime dependencies, which is itself a design choice."
+    },
+    {
+      "id": "NC-ID-04",
+      "function": "ID",
+      "title": "Threat and risk assessment refreshed quarterly, AI risks included",
+      "statement": "Threats, vulnerabilities, likelihoods, and impacts are assessed quarterly, including AI-specific harms (prompt injection, data leakage, harmful output, vendor model changes), and feed the risk register.",
+      "plain": "Every quarter someone asks what could go wrong, including with the AI systems, and updates the risk list.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Obtain the last assessment; confirm AI harms are covered and the date is within 90 days.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.RA-03",
+          "ID.RA-04",
+          "ID.RA-05"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC3.2"
+        ],
+        "airmf": [
+          "MAP 5.1",
+          "GOVERN 4.2"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "traiga"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-02",
+        "R-15"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "",
+      "last_evidence": "2026-07-08"
+    },
+    {
+      "id": "NC-ID-05",
+      "function": "ID",
+      "title": "Exception management with expiry and compensating controls",
+      "statement": "Any deviation from a control is recorded as an exception with a reason, an accepting role, compensating controls, and an expiry date. Expired exceptions fail the build.",
+      "plain": "When a rule cannot be followed yet, the gap is written down with an end date instead of being forgotten.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "on-change",
+      "test_procedure": "Read the exceptions register; every entry has the required fields and none is past expiry.",
+      "evidence_type": "automated",
+      "automation": "check.exceptions_expiry",
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.RA-07"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC8.1",
+          "CC4.2"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-07"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "The register entries are simulated; the expiry check is real and runs at build."
+    },
+    {
+      "id": "NC-ID-06",
+      "function": "ID",
+      "title": "Findings from tests, audits and incidents drive improvements",
+      "statement": "Findings from adversarial tests, audits, and incidents are recorded in a register with severity, fix, and the gate that prevents regression.",
+      "plain": "When a test or an incident finds a weakness, it is written down, fixed, and a test is added so it stays fixed.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "on-change",
+      "test_procedure": "Open the findings registers; every finding has a severity, a fix, and a linked test.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.IM-01",
+          "ID.IM-02",
+          "ID.IM-03"
+        ],
+        "cis": [
+          {
+            "id": "17.8",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC4.2"
+        ],
+        "airmf": [
+          "MANAGE 4.2"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-02"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "The Nimbus assistants carry a public findings register with 24 entries and a gate per finding; this site carries its own on the Tested page.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-ID-07",
+      "function": "ID",
+      "title": "Vulnerability disclosure channel published",
+      "statement": "A security.txt file on every public site tells researchers how to report a vulnerability and when the file expires.",
+      "plain": "If an outsider finds a security problem, the site tells them exactly where to send it.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "continuous",
+      "test_procedure": "Fetch /.well-known/security.txt on each public site; confirm Contact and a future Expires date.",
+      "evidence_type": "automated",
+      "automation": "check.security_txt",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.RA-08"
+        ],
+        "cis": [
+          {
+            "id": "17.2",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC2.3"
+        ],
+        "airmf": [
+          "MEASURE 3.3"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-04"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "Published on this site. Reported as a warning for a sister site that does not publish one yet."
+    },
+    {
+      "id": "NC-PR-01",
+      "function": "PR",
+      "title": "Multi-factor authentication for all workforce access",
+      "statement": "MFA is required for all workforce access to company systems, and phishing-resistant MFA is required for administrator and production access.",
+      "plain": "A password alone never gets anyone in. Administrators use the strongest kind of second factor.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Export identity provider MFA settings; confirm enforcement for all users and phishing-resistant methods for admin groups.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.AA-03"
+        ],
+        "cis": [
+          {
+            "id": "6.3",
+            "ig": 1
+          },
+          {
+            "id": "6.4",
+            "ig": 1
+          },
+          {
+            "id": "6.5",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01"
+      ],
+      "linked_policies": [
+        "POL-03"
+      ],
+      "notes": "",
+      "last_evidence": "2026-07-15"
+    },
+    {
+      "id": "NC-PR-02",
+      "function": "PR",
+      "title": "Access provisioning and removal (joiner, mover, leaver)",
+      "statement": "Access is granted on documented approval by role, changed on role change, and removed within one business day of departure.",
+      "plain": "People get only the access their job needs, and it is taken away promptly when they leave.",
+      "ai": false,
+      "owner_role": "People Operations Lead",
+      "frequency": "on-change",
+      "test_procedure": "Sample five leavers in the period; confirm removal within one business day. Sample five joiners; confirm approval records.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.AA-05"
+        ],
+        "cis": [
+          {
+            "id": "6.1",
+            "ig": 1
+          },
+          {
+            "id": "6.2",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.2",
+          "CC6.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01"
+      ],
+      "linked_policies": [
+        "POL-03"
+      ],
+      "notes": "",
+      "last_evidence": "2026-08-20"
+    },
+    {
+      "id": "NC-PR-03",
+      "function": "PR",
+      "title": "Quarterly access reviews for production and administrator access",
+      "statement": "Owners review production and administrator access quarterly, remove what is no longer needed, and record the review.",
+      "plain": "Every three months someone checks who still has powerful access and removes anyone who should not.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Obtain the last review record; confirm reviewer, date within 90 days, and removals actioned.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.AA-05"
+        ],
+        "cis": [
+          {
+            "id": "5.1",
+            "ig": 1
+          },
+          {
+            "id": "5.3",
+            "ig": 1
+          },
+          {
+            "id": "5.4",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.2",
+          "CC6.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01"
+      ],
+      "linked_policies": [
+        "POL-03"
+      ],
+      "notes": "",
+      "last_evidence": "2026-07-15"
+    },
+    {
+      "id": "NC-PR-04",
+      "function": "PR",
+      "title": "Secrets held server-side, never in client code or the repository",
+      "statement": "API keys and service credentials are stored as platform environment variables, referenced only by server-side code, and never committed to source control or shipped to the browser. The repository is scanned for secret patterns on every build and daily.",
+      "plain": "The keys that unlock paid services live only on the server, and the code is scanned to make sure none leaked.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "daily",
+      "test_procedure": "Read the latest evidence bundle: the secret scan passed within 2 days; inspect the client code for any key; confirm serverless functions read keys from environment variables.",
+      "evidence_type": "automated",
+      "automation": "check.secrets_scan",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.AA-01",
+          "PR.DS-01"
+        ],
+        "cis": [
+          {
+            "id": "3.11",
+            "ig": 2
+          },
+          {
+            "id": "16.1",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-12"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "The scan is regex-based (gitleaks-style, not gitleaks). The Nimbus and Trust Center functions read the model key from a Vercel environment variable."
+    },
+    {
+      "id": "NC-PR-05",
+      "function": "PR",
+      "title": "Non-human identity inventory and credential rotation",
+      "statement": "Service accounts, API keys, and workload credentials, including those used by AI systems, are inventoried with owner and purpose, scoped to least privilege, and rotated at least every 180 days or on suspected exposure.",
+      "plain": "Software and AI systems have their own logins. Each one is listed, limited to what it needs, and its key is changed regularly.",
+      "ai": true,
+      "owner_role": "Platform Lead",
+      "frequency": "semiannual",
+      "test_procedure": "Obtain the non-human identity inventory; confirm every entry has owner, scope, and a rotation date within 180 days.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "partial",
+      "mappings": {
+        "csf": [
+          "PR.AA-01",
+          "PR.AA-05"
+        ],
+        "cis": [
+          {
+            "id": "5.5",
+            "ig": 2
+          },
+          {
+            "id": "5.6",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.1",
+          "CC6.3"
+        ],
+        "airmf": [
+          "MANAGE 3.1"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-12",
+        "R-03"
+      ],
+      "linked_policies": [
+        "POL-03"
+      ],
+      "notes": "Partial: the model API key used by the real assistants is a standing key, rotated manually. A short-lived workload identity is the target state and is recorded as an exception.",
+      "last_evidence": "2026-06-01"
+    },
+    {
+      "id": "NC-PR-06",
+      "function": "PR",
+      "title": "Encryption in transit: HTTPS only with HSTS",
+      "statement": "All public endpoints are served over HTTPS with TLS 1.2 or higher, redirect plain HTTP, and send HTTP Strict Transport Security.",
+      "plain": "Everything between a visitor's browser and the site is encrypted, and the browser is told to never use the unencrypted version.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "continuous",
+      "test_procedure": "Fetch each public URL over HTTPS; confirm the Strict-Transport-Security header and that plain HTTP redirects to HTTPS.",
+      "evidence_type": "automated",
+      "automation": "check.transport",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.DS-02"
+        ],
+        "cis": [
+          {
+            "id": "3.10",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.1",
+          "CC6.7"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610",
+        "pci_saq_a"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-01"
+      ],
+      "linked_policies": [
+        "POL-04"
+      ],
+      "notes": "Checked daily on the live sites by the evidence job."
+    },
+    {
+      "id": "NC-PR-07",
+      "function": "PR",
+      "title": "Browser hardening headers with a hash-pinned Content Security Policy",
+      "statement": "Every page sends a Content Security Policy that pins the hash of each inline script, forbids framing, sets nosniff, a strict referrer policy, and a restrictive permissions policy. The policy is generated at build so it cannot drift from the page.",
+      "plain": "The site tells browsers exactly which code is allowed to run on it, which blocks a whole class of injection attacks.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "continuous",
+      "test_procedure": "Fetch each public URL; confirm CSP, X-Content-Type-Options, frame-ancestors or X-Frame-Options, Referrer-Policy, and Permissions-Policy headers are present with the expected values.",
+      "evidence_type": "automated",
+      "automation": "check.headers",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-01",
+          "PR.IR-01"
+        ],
+        "cis": [
+          {
+            "id": "4.1",
+            "ig": 1
+          },
+          {
+            "id": "16.11",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.6"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-02"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "Same mechanism as the Nimbus assistants: the build computes SHA-256 hashes of the inline scripts and writes them into vercel.json."
+    },
+    {
+      "id": "NC-PR-08",
+      "function": "PR",
+      "title": "Encryption at rest for customer data",
+      "statement": "Customer content and account data are encrypted at rest with AES-256 using provider-managed keys; backups inherit the same protection.",
+      "plain": "Stored customer data is scrambled on disk so a stolen copy is unreadable.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the storage configuration export; confirm encryption is enabled on all customer data stores and backups.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.DS-01"
+        ],
+        "cis": [
+          {
+            "id": "3.11",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "hipaa_baa",
+        "gdpr"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01"
+      ],
+      "linked_policies": [
+        "POL-04"
+      ],
+      "notes": "The Nimbus product documentation states AES-256 at rest; the underlying platform is simulated.",
+      "last_evidence": "2026-04-22"
+    },
+    {
+      "id": "NC-PR-09",
+      "function": "PR",
+      "title": "Deterministic builds from templates with gates that block deployment",
+      "statement": "Pages and platform configuration are generated from templates and data by a build script. Static, endpoint, and UI gates run on every push and must pass before deployment. Generated files are never hand-edited.",
+      "plain": "The site is assembled by a script and checked by automated tests before it goes live, so a mistake cannot slip in by hand.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "continuous",
+      "test_procedure": "Read the latest evidence bundle: gates ran within 2 days with zero failures; rebuild and compare the generated files (build sync).",
+      "evidence_type": "automated",
+      "automation": "check.gates",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-01",
+          "PR.PS-06"
+        ],
+        "cis": [
+          {
+            "id": "4.1",
+            "ig": 1
+          },
+          {
+            "id": "16.1",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC8.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-04"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "Policy-as-code in the form this stack can prove: the build fails on schema errors, unresolved IDs, expired exceptions, and missing AI inventory fields."
+    },
+    {
+      "id": "NC-PR-10",
+      "function": "PR",
+      "title": "Public endpoint abuse controls",
+      "statement": "Endpoints that spend money or call a model enforce a request rate limit keyed on the platform client IP, a daily cap, input length caps, a method allow-list, same-origin CORS, and fixed error copy that never echoes provider text.",
+      "plain": "Nobody can run up the bill or overload the site by hammering its AI features; each visitor gets a fair share and then a polite stop.",
+      "ai": true,
+      "owner_role": "Platform Lead",
+      "frequency": "continuous",
+      "test_procedure": "Read the latest evidence bundle: the guard checks found the limiter, caps, method check, and CORS handling in the API source; endpoint tests exercise 429 and 405 responses.",
+      "evidence_type": "automated",
+      "automation": "check.api_guards",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.IR-01",
+          "PR.IR-04"
+        ],
+        "cis": [
+          {
+            "id": "16.11",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.6",
+          "A1.1"
+        ],
+        "airmf": [
+          "MEASURE 2.7"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-03"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "Honest limit: the limiter is per warm serverless instance, not global. A production system would use a shared store."
+    },
+    {
+      "id": "NC-PR-11",
+      "function": "PR",
+      "title": "Patch and dependency management within defined windows",
+      "statement": "Dependencies are pinned by a lockfile, audited daily, and updated within 7 days for critical, 30 days for high, and 90 days for other findings.",
+      "plain": "Known flaws in the building blocks get fixed on a schedule that depends on how serious they are.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "daily",
+      "test_procedure": "Read the latest audit results; any open critical finding older than 7 days or high older than 30 days is a failure.",
+      "evidence_type": "automated",
+      "automation": "check.npm_audit",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-02"
+        ],
+        "cis": [
+          {
+            "id": "7.2",
+            "ig": 1
+          },
+          {
+            "id": "7.3",
+            "ig": 1
+          },
+          {
+            "id": "7.4",
+            "ig": 1
+          },
+          {
+            "id": "16.5",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-04"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "The remediation windows are policy; the audit is measured."
+    },
+    {
+      "id": "NC-PR-12",
+      "function": "PR",
+      "title": "Backups automated, protected, isolated and restore-tested",
+      "statement": "Customer data is backed up automatically at least daily, encrypted, kept in an isolated location, retained per the retention schedule, and a restore is tested quarterly.",
+      "plain": "Copies of customer data are made every day, kept somewhere attackers cannot reach, and someone practices restoring them.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Obtain backup job logs for the period and the last restore test record within 90 days.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.DS-11"
+        ],
+        "cis": [
+          {
+            "id": "11.1",
+            "ig": 1
+          },
+          {
+            "id": "11.2",
+            "ig": 1
+          },
+          {
+            "id": "11.3",
+            "ig": 1
+          },
+          {
+            "id": "11.4",
+            "ig": 1
+          },
+          {
+            "id": "11.5",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "A1.2",
+          "A1.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610",
+        "hipaa_baa"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-11",
+        "R-14"
+      ],
+      "linked_policies": [
+        "POL-08"
+      ],
+      "notes": "",
+      "last_evidence": "2026-05-02"
+    },
+    {
+      "id": "NC-PR-13",
+      "function": "PR",
+      "title": "Security logging centralized and retained",
+      "statement": "Authentication, administrative, and production change events are logged with timestamps, centralized, protected from tampering, retained for at least 12 months, and reviewed weekly.",
+      "plain": "Important actions leave a trail that cannot be erased, kept for a year, and someone looks at it every week.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "weekly",
+      "test_procedure": "Confirm log sources, retention setting, and the last weekly review record.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 14,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-04"
+        ],
+        "cis": [
+          {
+            "id": "8.1",
+            "ig": 1
+          },
+          {
+            "id": "8.2",
+            "ig": 1
+          },
+          {
+            "id": "8.3",
+            "ig": 1
+          },
+          {
+            "id": "8.9",
+            "ig": 2
+          },
+          {
+            "id": "8.10",
+            "ig": 2
+          },
+          {
+            "id": "8.11",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.2"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610",
+        "hipaa_baa"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01",
+        "R-12"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "The real public demos deliberately log no conversation content (see NC-PR-14); platform access logs are the simulated source here.",
+      "last_evidence": "2026-09-08"
+    },
+    {
+      "id": "NC-PR-14",
+      "function": "PR",
+      "title": "AI data minimization: no conversation transcripts stored",
+      "statement": "Public AI endpoints process conversations in memory only. No transcript, prompt, or model output is written to logs or storage. Visitor-supplied text is capped and labelled untrusted before it reaches the model.",
+      "plain": "What people type into the AI assistants is not saved anywhere, and anything a visitor adds is treated as untrusted.",
+      "ai": true,
+      "owner_role": "Platform Lead",
+      "frequency": "on-change",
+      "test_procedure": "Inspect the API source: no logging of request or response bodies; confirm the cap and label on visitor text; confirm the behavior in the endpoint tests.",
+      "evidence_type": "document",
+      "automation": "check.api_guards",
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.DS-10",
+          "GV.PO-01"
+        ],
+        "cis": [
+          {
+            "id": "3.4",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "C1.1",
+          "C1.2"
+        ],
+        "airmf": [
+          "MEASURE 2.10",
+          "MAP 2.2"
+        ]
+      },
+      "drivers": [
+        "gdpr",
+        "eu_ai_act",
+        "traiga"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-02",
+        "R-09"
+      ],
+      "linked_policies": [
+        "POL-02",
+        "POL-04"
+      ],
+      "notes": "A trust decision with a cost: there is no transcript log to review after an incident. The tradeoff is stated on the AI inventory card.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-PR-15",
+      "function": "PR",
+      "title": "Endpoint protection on workforce devices",
+      "statement": "Company laptops run managed anti-malware with automatic updates, full-disk encryption, and screen lock; unmanaged devices cannot reach production.",
+      "plain": "Staff laptops are protected and encrypted, and a personal device cannot touch production systems.",
+      "ai": false,
+      "owner_role": "IT Lead",
+      "frequency": "monthly",
+      "test_procedure": "Export the device management report; confirm coverage of all assigned devices and no production access from unmanaged devices.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-05",
+          "PR.DS-01"
+        ],
+        "cis": [
+          {
+            "id": "10.1",
+            "ig": 1
+          },
+          {
+            "id": "3.6",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.8"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-14"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "",
+      "last_evidence": "2026-09-02"
+    },
+    {
+      "id": "NC-PR-16",
+      "function": "PR",
+      "title": "Secure development: review, tests and gates before release",
+      "statement": "Every change is reviewed, passes automated tests and gates, and is deployed from a known commit. Findings from testing are tracked to closure.",
+      "plain": "No change reaches the live site without a review and passing tests.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "continuous",
+      "test_procedure": "Read the latest evidence bundle for gate results; inspect the CI configuration; sample three changes for review evidence.",
+      "evidence_type": "automated",
+      "automation": "check.gates",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-06"
+        ],
+        "cis": [
+          {
+            "id": "16.1",
+            "ig": 2
+          },
+          {
+            "id": "16.2",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC8.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-04"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "Single-maintainer honesty: review is by the author with AI assistance and the gates; the gates are the enforceable part."
+    },
+    {
+      "id": "NC-PR-17",
+      "function": "PR",
+      "title": "AI systems disclose that they are AI and hand off to a human on request",
+      "statement": "Every customer-facing AI system tells users it is an AI, offers a path to a human, and never claims to have taken an action it cannot take. These rules are part of the system prompt and are checked at build.",
+      "plain": "The assistants say they are AI, will get a human when asked, and never pretend they did something they did not.",
+      "ai": true,
+      "owner_role": "Product Lead",
+      "frequency": "on-change",
+      "test_procedure": "Inspect the persona rules and the build gate that checks them; run the hand-off and action-claim test cases.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "GV.OC-03"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC2.3"
+        ],
+        "airmf": [
+          "GOVERN 3.2",
+          "MAP 2.2",
+          "MEASURE 2.8"
+        ]
+      },
+      "drivers": [
+        "eu_ai_act",
+        "traiga"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-15",
+        "R-02"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "On the Nimbus assistants the persona rules are gated at build and the claim guard flags phantom action claims. This satisfies the EU AI Act Article 50 transparency duty for chat systems.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-PR-18",
+      "function": "PR",
+      "title": "AI runtime permissions: allowed actions defined and guarded per system",
+      "statement": "Each AI system has a written list of the actions it may take. Actions with real-world effect require a deterministic code guard or a human approval; the model can never set a security-relevant state on its own.",
+      "plain": "Each AI system has a short list of things it may do. Anything with real consequences needs either a hard-coded check or a person to approve it.",
+      "ai": true,
+      "owner_role": "Product Lead",
+      "frequency": "on-change",
+      "test_procedure": "Compare each inventory runtime table with the code paths: every allowed action has a guard, every disallowed action is not reachable, and the build gate confirms the table is present.",
+      "evidence_type": "automated",
+      "automation": "check.ai_inventory_complete",
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.AA-05"
+        ],
+        "cis": [
+          {
+            "id": "6.8",
+            "ig": 3
+          }
+        ],
+        "soc2": [
+          "CC6.3"
+        ],
+        "airmf": [
+          "GOVERN 3.2",
+          "MANAGE 2.4",
+          "MAP 2.1"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-02",
+        "R-15"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "Examples: the support assistant cannot issue refunds or change accounts (hand-off only); this site's control mapper can only return IDs that exist in the library, enforced server-side."
+    },
+    {
+      "id": "NC-PR-19",
+      "function": "PR",
+      "title": "AI kill switch: any AI system can be disabled within minutes",
+      "statement": "A named role can disable any AI system within 15 minutes by removing its provider credential or feature flag and redeploying; the page then shows a clear unavailable state instead of failing silently.",
+      "plain": "If an AI system misbehaves, one person can switch it off fast, and the site says so instead of breaking.",
+      "ai": true,
+      "owner_role": "Platform Lead",
+      "frequency": "semiannual",
+      "test_procedure": "Walk through the documented procedure; confirm the health probe reports the disabled state and the page renders the unavailable notice.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.IR-03"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC7.4"
+        ],
+        "airmf": [
+          "MANAGE 2.4",
+          "GOVERN 1.7"
+        ]
+      },
+      "drivers": [
+        "traiga"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-15",
+        "R-03"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "Real procedure on the Nimbus assistants and on this site: remove the API_KEY environment variable and redeploy; the health endpoint returns ok:false and the status pill turns off.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-PR-20",
+      "function": "PR",
+      "title": "AI model change management with regression testing",
+      "statement": "Model names are pinned in configuration. Any model or provider change is treated as a change to the system: the full test matrix runs before and after, and results are recorded.",
+      "plain": "Swapping the AI model underneath is treated like any other risky change: test everything again, not just the thing that broke.",
+      "ai": true,
+      "owner_role": "Platform Lead",
+      "frequency": "on-change",
+      "test_procedure": "Confirm the model is pinned by environment variable; obtain the test run for the most recent model change.",
+      "evidence_type": "document",
+      "automation": "check.gates",
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.PS-01",
+          "ID.RA-09"
+        ],
+        "cis": [
+          {
+            "id": "16.5",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC8.1"
+        ],
+        "airmf": [
+          "MANAGE 3.2",
+          "MEASURE 2.5"
+        ]
+      },
+      "drivers": [
+        "traiga"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-05"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "Origin story: a model upgrade on the Nimbus assistants began billing hidden reasoning tokens against the reply budget and truncated answers mid-sentence. The fix and the rule (regression-test everything after any model change) are documented.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-PR-21",
+      "function": "PR",
+      "title": "Untrusted input handling for AI systems",
+      "statement": "Visitor text, pasted evidence, and retrieved documents are treated as data, not instructions: capped in length, labelled untrusted in the prompt, and never allowed to change system state. Model outputs are validated against a schema and an allow-list before use.",
+      "plain": "The AI is told that what visitors type is information, not orders, and its answers are checked before the site uses them.",
+      "ai": true,
+      "owner_role": "Platform Lead",
+      "frequency": "on-change",
+      "test_procedure": "Inspect the prompt assembly and output validation in the API source; run the injection test cases in the endpoint tests.",
+      "evidence_type": "document",
+      "automation": "check.api_guards",
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "PR.DS-10",
+          "PR.PS-06"
+        ],
+        "cis": [
+          {
+            "id": "16.1",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC6.6"
+        ],
+        "airmf": [
+          "MEASURE 2.7",
+          "MANAGE 1.3"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-02"
+      ],
+      "linked_policies": [
+        "POL-02",
+        "POL-07"
+      ],
+      "notes": "Maps to OWASP LLM Top 10 prompt injection and insecure output handling.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-PR-22",
+      "function": "PR",
+      "title": "Shadow AI: approval before new AI tools handle company or customer data",
+      "statement": "Staff must request approval before using any AI tool with internal or customer data. Approved tools are listed in the inventory; browser and expense reports are reviewed quarterly for unapproved AI services.",
+      "plain": "Employees cannot paste customer data into a random AI app; tools must be approved and listed first.",
+      "ai": true,
+      "owner_role": "IT Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Obtain the approved tool list and the last quarterly review of expense and SaaS discovery data.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "partial",
+      "mappings": {
+        "csf": [
+          "GV.PO-01",
+          "ID.AM-02"
+        ],
+        "cis": [
+          {
+            "id": "2.1",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC6.1"
+        ],
+        "airmf": [
+          "GOVERN 1.6",
+          "GOVERN 6.1"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "gdpr"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-09"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "Partial by design: discovery review is quarterly, not continuous.",
+      "last_evidence": "2026-07-01"
+    },
+    {
+      "id": "NC-DE-01",
+      "function": "DE",
+      "title": "Continuous monitoring of public surfaces by a daily evidence job",
+      "statement": "A scheduled job checks the public sites daily (security headers, disclosure file, dependency audit, gate results, secret scan, policy and exception freshness), writes a machine-readable evidence bundle keyed by control, and commits it.",
+      "plain": "A robot checks the site every day and writes down what it found, so the evidence is always fresh instead of a once-a-year snapshot.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "daily",
+      "test_procedure": "Read evidence/latest.json: generated within 2 days, every check present, history retained.",
+      "evidence_type": "automated",
+      "automation": "check.evidence_run",
+      "freshness_days": 2,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "DE.CM-09",
+          "DE.CM-01"
+        ],
+        "cis": [
+          {
+            "id": "7.5",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.1",
+          "CC4.1"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-04",
+        "R-07"
+      ],
+      "linked_policies": [
+        "POL-01"
+      ],
+      "notes": "What a real program would add: cloud configuration, identity provider, device management, and ticketing data. Those integrations are named, not faked."
+    },
+    {
+      "id": "NC-DE-02",
+      "function": "DE",
+      "title": "Security event alerting centralized and reviewed",
+      "statement": "Security-relevant events from identity, cloud, and endpoint sources are correlated in one place, alerts are routed to an on-call role, and the alert rules are reviewed monthly.",
+      "plain": "Warning signs from different systems are collected in one place and someone is on duty to look at them.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "monthly",
+      "test_procedure": "Confirm the sources feeding the alerting platform, the on-call rota, and the last rule review within 30 days.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "DE.AE-02",
+          "DE.AE-03",
+          "DE.AE-06"
+        ],
+        "cis": [
+          {
+            "id": "13.1",
+            "ig": 2
+          },
+          {
+            "id": "8.11",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.2",
+          "CC7.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01",
+        "R-14"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "",
+      "last_evidence": "2026-08-25"
+    },
+    {
+      "id": "NC-DE-03",
+      "function": "DE",
+      "title": "Vendor and provider status monitored",
+      "statement": "Status pages and security bulletins of tier 1 vendors are monitored; provider incidents that affect Nimbus are logged and assessed.",
+      "plain": "The company watches its key suppliers for outages and security news that could affect customers.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "monthly",
+      "test_procedure": "Confirm subscriptions to tier 1 vendor status feeds and the log of provider incidents for the period.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 30,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "DE.CM-06"
+        ],
+        "cis": [
+          {
+            "id": "15.6",
+            "ig": 3
+          }
+        ],
+        "soc2": [
+          "CC9.2"
+        ],
+        "airmf": [
+          "MANAGE 3.1"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-06",
+        "R-05"
+      ],
+      "linked_policies": [
+        "POL-05"
+      ],
+      "notes": "",
+      "last_evidence": "2026-08-25"
+    },
+    {
+      "id": "NC-DE-04",
+      "function": "DE",
+      "title": "AI output monitoring and refusal metrics",
+      "statement": "Customer-facing AI systems report aggregate metrics (answered, grounded, refused, handed off) without storing transcripts. A product owner reviews the metrics monthly for drift.",
+      "plain": "The company tracks how often the assistants answer, refuse, or hand off, without keeping what people typed, and looks for changes.",
+      "ai": true,
+      "owner_role": "Product Lead",
+      "frequency": "monthly",
+      "test_procedure": "Obtain the monthly metrics review; confirm no transcript storage is involved.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 30,
+      "status": "partial",
+      "mappings": {
+        "csf": [
+          "DE.CM-09"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC7.2"
+        ],
+        "airmf": [
+          "MEASURE 3.1",
+          "MANAGE 4.1"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-15",
+        "R-02"
+      ],
+      "linked_policies": [
+        "POL-02"
+      ],
+      "notes": "Partial: the real demos show session metrics on the page but do not aggregate them server-side, by privacy design. Recorded as an exception with a compensating control (adversarial testing).",
+      "last_evidence": "2026-08-25"
+    },
+    {
+      "id": "NC-DE-05",
+      "function": "DE",
+      "title": "Adversarial testing of AI systems before release and after model changes",
+      "statement": "Every AI system is red-teamed against prompt injection, false authority, policy abuse, data exfiltration, and phantom action claims before release and after any model change. Findings go to the register with a gate per finding.",
+      "plain": "Before an assistant goes live, and whenever the model changes, someone attacks it on purpose and fixes what breaks.",
+      "ai": true,
+      "owner_role": "Security Lead",
+      "frequency": "on-change",
+      "test_procedure": "Obtain the findings register and the test run for the current release; confirm coverage of the listed attack classes.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "ID.IM-02",
+          "DE.CM-09"
+        ],
+        "cis": [
+          {
+            "id": "16.13",
+            "ig": 3
+          },
+          {
+            "id": "18.1",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC4.1"
+        ],
+        "airmf": [
+          "MEASURE 2.6",
+          "MEASURE 2.7",
+          "GOVERN 4.3"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-02",
+        "R-15"
+      ],
+      "linked_policies": [
+        "POL-07"
+      ],
+      "notes": "The Nimbus assistants carry 24 public findings with fixes; this site's Tested page carries its own register.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-DE-06",
+      "function": "DE",
+      "title": "Incident declaration criteria",
+      "statement": "Written criteria define when an event becomes a security or AI incident, who can declare one, and the severity scale.",
+      "plain": "There is a clear rule for when a problem officially counts as an incident, so nobody hesitates to raise the alarm.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the criteria; confirm they cover AI incidents (harmful output, data leakage through a model, vendor model failure) and are dated within 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "DE.AE-08",
+          "DE.AE-04"
+        ],
+        "cis": [
+          {
+            "id": "17.3",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC7.3"
+        ],
+        "airmf": [
+          "GOVERN 4.3"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "tx_breach"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-10"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "",
+      "last_evidence": "2026-06-15"
+    },
+    {
+      "id": "NC-RS-01",
+      "function": "RS",
+      "title": "Incident response plan with roles and contact list",
+      "statement": "An incident response plan defines roles, an on-call contact list, communication channels, evidence handling, and vendor contacts. It is reviewed annually.",
+      "plain": "There is a written playbook for bad days, with names of roles and how to reach them.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the plan; confirm roles, contacts, channels, and a review date within 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RS.MA-01",
+          "ID.IM-04"
+        ],
+        "cis": [
+          {
+            "id": "17.1",
+            "ig": 1
+          },
+          {
+            "id": "17.4",
+            "ig": 2
+          },
+          {
+            "id": "17.5",
+            "ig": 2
+          },
+          {
+            "id": "17.6",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.4"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report",
+        "sb2610"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01",
+        "R-14"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "",
+      "last_evidence": "2026-06-15"
+    },
+    {
+      "id": "NC-RS-02",
+      "function": "RS",
+      "title": "Incident triage, categorization and escalation",
+      "statement": "Reported events are triaged within four hours, categorized by type and severity, and escalated per the severity matrix.",
+      "plain": "Every report gets looked at quickly, sorted by how bad it is, and sent up the chain when it matters.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "on-change",
+      "test_procedure": "Sample incidents in the period; confirm triage time, category, severity, and escalation records.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RS.MA-02",
+          "RS.MA-03",
+          "RS.MA-04"
+        ],
+        "cis": [
+          {
+            "id": "17.4",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.4"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-10"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "",
+      "last_evidence": "2026-08-11"
+    },
+    {
+      "id": "NC-RS-03",
+      "function": "RS",
+      "title": "Breach notification procedure with legal and contractual windows",
+      "statement": "A procedure lists every notification duty and its clock: affected individuals within 60 days and the Texas Attorney General within 30 days when 250 or more Texas residents are affected; EU supervisory authority within 72 hours for GDPR personal data; customer contract windows; HIPAA covered entities per the business associate agreement.",
+      "plain": "If customer data is exposed, the company knows exactly who must be told and by when.",
+      "ai": false,
+      "owner_role": "Legal and Finance Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the procedure; confirm each window matches current law and contracts; confirm the last review within 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RS.CO-02",
+          "RS.CO-03"
+        ],
+        "cis": [
+          {
+            "id": "17.4",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.4",
+          "CC2.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "tx_breach",
+        "gdpr",
+        "hipaa_baa"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-10"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "Windows cited from Texas Business and Commerce Code 521.053 and GDPR Article 33.",
+      "last_evidence": "2026-06-15"
+    },
+    {
+      "id": "NC-RS-04",
+      "function": "RS",
+      "title": "AI incident escalation path",
+      "statement": "AI-specific incidents (harmful or discriminatory output, data leakage through a model, vendor model failure, an agent taking an unintended action) have a defined path: disable the system, notify the AI owner and the accountable executive within one hour, assess legal duties, and communicate to affected customers.",
+      "plain": "If an AI system does something harmful, there is a set order of steps: switch it off, tell the right people fast, then work out who else must know.",
+      "ai": true,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the escalation path; confirm it is exercised in the annual tabletop and references the kill switch procedure.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RS.MA-04",
+          "RS.CO-02"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC7.4"
+        ],
+        "airmf": [
+          "MANAGE 2.3",
+          "MANAGE 4.3",
+          "GOVERN 4.3"
+        ]
+      },
+      "drivers": [
+        "traiga",
+        "eu_ai_act"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-15",
+        "R-02"
+      ],
+      "linked_policies": [
+        "POL-02",
+        "POL-06"
+      ],
+      "notes": "Texas HB 149 gives a 60-day cure period after Attorney General notice; the path is designed to finish containment well inside it.",
+      "last_evidence": "2026-08-28"
+    },
+    {
+      "id": "NC-RS-05",
+      "function": "RS",
+      "title": "Annual tabletop exercise including an AI scenario",
+      "statement": "Leadership and technical staff run a tabletop exercise at least annually. One scenario each year involves an AI system (for example, prompt injection leading to data exposure). Lessons are recorded and assigned.",
+      "plain": "Once a year the team rehearses a security emergency, including one caused by AI, and writes down what to improve.",
+      "ai": false,
+      "owner_role": "Security Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the exercise record: date within 12 months, participants, scenario, and assigned actions.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RS.MA-01",
+          "ID.IM-02"
+        ],
+        "cis": [
+          {
+            "id": "17.7",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC7.4"
+        ],
+        "airmf": [
+          "GOVERN 4.3"
+        ]
+      },
+      "drivers": [
+        "soc2_report",
+        "traiga"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-01",
+        "R-15"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "",
+      "last_evidence": "2025-07-20"
+    },
+    {
+      "id": "NC-RS-06",
+      "function": "RS",
+      "title": "Post-incident review and root cause",
+      "statement": "Every incident and every production regression gets a written review with timeline, root cause, and actions, published internally within two weeks.",
+      "plain": "After something goes wrong, the team writes down what happened and why, so it does not happen again.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "on-change",
+      "test_procedure": "Sample incidents and regressions in the period; confirm a review exists with root cause and actions.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 180,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RS.AN-03",
+          "ID.IM-03"
+        ],
+        "cis": [
+          {
+            "id": "17.8",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "CC4.2",
+          "CC7.5"
+        ],
+        "airmf": [
+          "MANAGE 4.2"
+        ]
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "real",
+      "linked_risks": [
+        "R-05"
+      ],
+      "linked_policies": [
+        "POL-06"
+      ],
+      "notes": "Real example: the Nimbus support assistant shipped without its human hand-off rule after a prompt condensation; the postmortem, the fix in versioned steps, and the model swap are documented.",
+      "last_evidence": "2026-09-01"
+    },
+    {
+      "id": "NC-RC-01",
+      "function": "RC",
+      "title": "Recovery plan and restore procedures",
+      "statement": "A recovery plan defines recovery time and recovery point objectives per service, restore procedures, and the order of restoration; it is reviewed annually.",
+      "plain": "There is a plan for getting the service back after a disaster, with targets for how fast and how much data could be lost.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "annual",
+      "test_procedure": "Obtain the plan; confirm objectives per service and a review within 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RC.RP-01",
+          "RC.RP-02"
+        ],
+        "cis": [
+          {
+            "id": "11.1",
+            "ig": 1
+          }
+        ],
+        "soc2": [
+          "CC7.5",
+          "A1.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-11",
+        "R-06"
+      ],
+      "linked_policies": [
+        "POL-08"
+      ],
+      "notes": "",
+      "last_evidence": "2026-03-30"
+    },
+    {
+      "id": "NC-RC-02",
+      "function": "RC",
+      "title": "Backup integrity verified before restore; restored systems verified",
+      "statement": "Backups are integrity-checked before use, restored systems are verified against known-good state, and the end of recovery is declared against written criteria.",
+      "plain": "Before relying on a backup, it is checked; after restoring, the system is checked again before anyone calls it done.",
+      "ai": false,
+      "owner_role": "Platform Lead",
+      "frequency": "quarterly",
+      "test_procedure": "Obtain the last restore test: integrity check, verification steps, and completion sign-off.",
+      "evidence_type": "attestation",
+      "automation": null,
+      "freshness_days": 90,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RC.RP-03",
+          "RC.RP-05",
+          "RC.RP-06"
+        ],
+        "cis": [
+          {
+            "id": "11.5",
+            "ig": 2
+          }
+        ],
+        "soc2": [
+          "A1.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-11"
+      ],
+      "linked_policies": [
+        "POL-08"
+      ],
+      "notes": "",
+      "last_evidence": "2026-07-10"
+    },
+    {
+      "id": "NC-RC-03",
+      "function": "RC",
+      "title": "Recovery communications and public status page",
+      "statement": "During and after an incident, customers receive updates through the status page and approved channels; messaging is approved by the accountable executive.",
+      "plain": "Customers are kept informed during an outage through a public status page.",
+      "ai": false,
+      "owner_role": "Product Lead",
+      "frequency": "annual",
+      "test_procedure": "Confirm the status page exists and the communication templates are approved within 12 months.",
+      "evidence_type": "document",
+      "automation": null,
+      "freshness_days": 365,
+      "status": "operating",
+      "mappings": {
+        "csf": [
+          "RC.CO-03",
+          "RC.CO-04"
+        ],
+        "cis": [],
+        "soc2": [
+          "CC2.3"
+        ],
+        "airmf": []
+      },
+      "drivers": [
+        "soc2_report"
+      ],
+      "reality": "simulated",
+      "linked_risks": [
+        "R-06"
+      ],
+      "linked_policies": [
+        "POL-08"
+      ],
+      "notes": "The product documentation names a status page at a reserved example domain.",
+      "last_evidence": "2026-03-30"
+    }
+  ]
+}

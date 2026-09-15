@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-09-15T03:27:53.780Z",
+  "scope": "full",
+  "gates_included": true,
+  "run_id": "local-202609150327",
+  "source_commit": "n/a",
+  "targets": [
+    {
+      "slug": "trust-center",
+      "label": "This site",
+      "url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "slug": "nimbus",
+      "label": "Nimbus AI Assistants",
+      "url": "https://nimbus-ai-demos.vercel.app"
+    }
+  ],
+  "checks": [
+    {
+      "id": "check.transport.trust-center",
+      "control_ids": [
+        "NC-PR-06"
+      ],
+      "result": "pass",
+      "observed": "HTTPS 404; HSTS present (max-age=63072000; includeSubDomains; preload); http redirects to https",
+      "expected": "HTTPS 200, HSTS header present, plain HTTP redirects",
+      "source_url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "id": "check.headers.trust-center.csp",
+      "control_ids": [
+        "NC-PR-07"
+      ],
+      "result": "fail",
+      "observed": "CSP missing",
+      "expected": "Content-Security-Policy present with hash-pinned or self-only script-src",
+      "source_url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "id": "check.headers.trust-center.hardening",
+      "control_ids": [
+        "NC-PR-07"
+      ],
+      "result": "fail",
+      "observed": "present: none; missing: x-content-type-options, frame protection, referrer-policy, permissions-policy",
+      "expected": "nosniff, frame protection, referrer policy, permissions policy",
+      "source_url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "id": "check.security_txt.trust-center",
+      "control_ids": [
+        "NC-ID-07"
+      ],
+      "result": "fail",
+      "observed": "no security.txt published on This site",
+      "expected": "security.txt at /.well-known/security.txt",
+      "source_url": "https://nimbus-trust-center.vercel.app/.well-known/security.txt"
+    },
+    {
+      "id": "check.transport.nimbus",
+      "control_ids": [
+        "NC-PR-06"
+      ],
+      "result": "pass",
+      "observed": "HTTPS 200; HSTS present (max-age=63072000; includeSubDomains; preload); http redirects to https",
+      "expected": "HTTPS 200, HSTS header present, plain HTTP redirects",
+      "source_url": "https://nimbus-ai-demos.vercel.app"
+    },
+    {
+      "id": "check.headers.nimbus.csp",
+      "control_ids": [
+        "NC-PR-07"
+      ],
+      "result": "pass",
+      "observed": "CSP present; script-src hash-pinned; frame-ancestors set; 396 chars",
+      "expected": "Content-Security-Policy present with hash-pinned or self-only script-src",
+      "source_url": "https://nimbus-ai-demos.vercel.app"
+    },
+    {
+      "id": "check.headers.nimbus.hardening",
+      "control_ids": [
+        "NC-PR-07"
+      ],
+      "result": "pass",
+      "observed": "present: x-content-type-options, frame protection, referrer-policy, permissions-policy",
+      "expected": "nosniff, frame protection, referrer policy, permissions policy",
+      "source_url": "https://nimbus-ai-demos.vercel.app"
+    },
+    {
+      "id": "check.security_txt.nimbus",
+      "control_ids": [
+        "NC-ID-07"
+      ],
+      "result": "warn",
+      "observed": "no security.txt published on Nimbus AI Assistants (sister site; disclosure channel is its GitHub repository)",
+      "expected": "security.txt at /.well-known/security.txt",
+      "source_url": "https://nimbus-ai-demos.vercel.app/.well-known/security.txt"
+    },
+    {
+      "id": "check.security_txt.local",
+      "control_ids": [
+        "NC-ID-07"
+      ],
+      "result": "pass",
+      "observed": "file present; expires 2027-09-01",
+      "expected": "Contact present and Expires in the future"
+    },
+    {
+      "id": "check.secrets_scan",
+      "control_ids": [
+        "NC-PR-04"
+      ],
+      "result": "pass",
+      "observed": "55 files scanned, 0 secret pattern hits",
+      "expected": "no API key, token, or private key patterns in the repository"
+    },
+    {
+      "id": "check.api_guards",
+      "control_ids": [
+        "NC-PR-10",
+        "NC-PR-14",
+        "NC-PR-21"
+      ],
+      "result": "pass",
+      "observed": "7 of 7 guards found in backend/api/map.js",
+      "expected": "limiter, input cap, POST only, CORS, output validation, untrusted wrapping, no content logging",
+      "source_url": "https://github.com/TC26-max/Nimbus_Trust_Center/blob/main/backend/api/map.js"
+    },
+    {
+      "id": "check.policy_freshness",
+      "control_ids": [
+        "NC-GV-04"
+      ],
+      "result": "pass",
+      "observed": "8 policies; review age POL-01 31d, POL-02 18d, POL-03 97d, POL-04 71d, POL-05 119d, POL-06 43d, POL-07 14d, POL-08 111d (window 365d)",
+      "expected": "every policy reviewed inside its review window"
+    },
+    {
+      "id": "check.exceptions_expiry",
+      "control_ids": [
+        "NC-ID-05"
+      ],
+      "result": "pass",
+      "observed": "4 exceptions open; 0 expired; 0 expiring within 30 days",
+      "expected": "no expired exceptions"
+    },
+    {
+      "id": "check.ai_inventory_complete",
+      "control_ids": [
+        "NC-GV-07",
+        "NC-GV-08",
+        "NC-PR-18"
+      ],
+      "result": "pass",
+      "observed": "5 systems, all required fields present; 4 real",
+      "expected": "every AI system has purpose, users, data classes, model, runtime permissions, oversight, logging, kill switch, owner, review date, AI RMF rows"
+    },
+    {
+      "id": "check.risk_register",
+      "control_ids": [
+        "NC-GV-02"
+      ],
+      "result": "pass",
+      "observed": "15 risks with owner, ratings, treatment and KRI; appetite statement present",
+      "expected": "complete register and an approved appetite statement"
+    },
+    {
+      "id": "check.vendor_register",
+      "control_ids": [
+        "NC-GV-09"
+      ],
+      "result": "pass",
+      "observed": "7 vendors; 0 past review cadence",
+      "expected": "every vendor reviewed inside its cadence"
+    },
+    {
+      "id": "check.npm_audit",
+      "control_ids": [
+        "NC-ID-03",
+        "NC-PR-11"
+      ],
+      "result": "pass",
+      "observed": "0 runtime dependencies declared; audit found critical 0, high 0, moderate 0, low 0",
+      "expected": "0 high or critical vulnerabilities in runtime dependencies"
+    },
+    {
+      "id": "check.gates",
+      "control_ids": [
+        "NC-PR-09",
+        "NC-PR-16",
+        "NC-PR-20"
+      ],
+      "result": "pass",
+      "observed": "npm test exit 0; 104 checks: static 25, endpoint 33, ui 46",
+      "expected": "build, eval and all gates pass",
+      "source_url": "https://github.com/TC26-max/Nimbus_Trust_Center/actions"
+    },
+    {
+      "id": "check.evidence_run",
+      "control_ids": [
+        "NC-DE-01"
+      ],
+      "result": "pass",
+      "observed": "evidence job ran at 2026-09-15T03:27:53.780Z with 19 checks",
+      "expected": "daily run recorded"
+    }
+  ]
+}

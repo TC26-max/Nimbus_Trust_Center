@@ -1,0 +1,28 @@
+{
+  "name": "Nimbus Trust Center",
+  "tagline": "Continuous assurance for a simulated company: real controls, live evidence, governed AI.",
+  "version": "1.0.0",
+  "live_url": "https://nimbus-trust-center.vercel.app",
+  "repo_url": "https://github.com/TC26-max/Nimbus_Trust_Center",
+  "attribution": "Emilio Rigales",
+  "attribution_line": "Privately built for demonstration and portfolio purposes only.",
+  "sister_sites": [
+    { "label": "Nimbus AI Assistants (Grounded)", "url": "https://nimbus-ai-demos.vercel.app" },
+    { "label": "Source on GitHub", "url": "https://github.com/TC26-max/Nimbus_Trust_Center" }
+  ],
+  "evidence_targets": [
+    { "slug": "trust-center", "label": "This site", "url": "https://nimbus-trust-center.vercel.app", "self": true },
+    { "slug": "nimbus", "label": "Nimbus AI Assistants", "url": "https://nimbus-ai-demos.vercel.app", "self": false }
+  ],
+  "security_txt": {
+    "contact": "https://github.com/TC26-max/Nimbus_Trust_Center/security/advisories/new",
+    "expires": "2027-09-01T00:00:00.000Z",
+    "preferred_languages": "en"
+  },
+  "credentials": {
+    "security_plus": "CompTIA Security+ (SY0-701)",
+    "security_plus_url": "",
+    "ai_literacy": "Four AI literacy certificates: prompting, advanced prompting, Claude 101, AI essentials"
+  },
+  "limits": { "map_per_5_min": 20, "map_per_day_instance": 600, "max_question_chars": 600 }
+}

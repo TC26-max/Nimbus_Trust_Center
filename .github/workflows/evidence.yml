@@ -1,0 +1,32 @@
+name: evidence
+# The daily evidence job (control NC-DE-01). Checks the live sites and the repository, writes
+# evidence/<date>.json and evidence/latest.json, rebuilds the page with the bundle embedded, and commits.
+# The commit carries [skip ci] so it never re-triggers the test workflow (finding T-10).
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: evidence
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Collect evidence (runs npm test inside, then rebuilds the page)
+        run: node eval/evidence-collect.mjs || true
+      - name: Commit the bundle and the rebuilt page
+        run: |
+          git config user.name "evidence-bot"
+          git config user.email "evidence-bot@users.noreply.github.com"
+          git add evidence backend/index.html backend/vercel.json backend/controls-index.json backend/.well-known/security.txt eval/results.json docs/CROSSWALK.md
+          git diff --cached --quiet && echo "nothing changed" || git commit -m "evidence: daily bundle $(date -u +%Y-%m-%d) [skip ci]"
+          git push

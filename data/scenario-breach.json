@@ -1,0 +1,61 @@
+{
+  "id": "S-01",
+  "title": "Administrator credential compromise leads to a customer data breach",
+  "plain": "This page estimates how much money Nimbus could lose in a year if an administrator's login were stolen and customer data exposed, and shows how much each safeguard changes that number. It is a what-if calculation for a made-up company, not a forecast.",
+  "reality": "simulated",
+  "linked_risks": ["R-01"],
+  "assumptions_note": "Every number in this scenario is an assumption for a simulated company, not an observation from a real incident. Frequency (events per year) and magnitude (loss per event in US dollars) are each modelled as a triangular distribution with a minimum, a most likely, and a maximum value; the page draws 10,000 simulated years, multiplies by the factor of each control that is switched on, and reports the distribution of annual loss against the board's appetite of 150,000 US dollars.",
+  "frequency": { "min": 0.05, "mode": 0.2, "max": 0.6, "unit": "events per year" },
+  "magnitude": { "min": 40000, "mode": 180000, "max": 900000, "unit": "USD per event" },
+  "controls": [
+    {
+      "id": "NC-PR-01",
+      "label": "Multi-factor authentication for all workforce access",
+      "effect": "frequency",
+      "factor": 0.45,
+      "default_on": true,
+      "note": "Assumption: phishing-resistant second factors on administrator accounts stop most stolen-password logins, so the event happens less than half as often."
+    },
+    {
+      "id": "NC-PR-03",
+      "label": "Quarterly access reviews for production and administrator access",
+      "effect": "frequency",
+      "factor": 0.8,
+      "default_on": true,
+      "note": "Assumption: fewer standing administrator accounts means fewer credentials worth stealing; a modest reduction in how often the event occurs."
+    },
+    {
+      "id": "NC-PR-13",
+      "label": "Security logging centralized and retained",
+      "effect": "magnitude",
+      "factor": 0.7,
+      "default_on": true,
+      "note": "Assumption: tamper-proof logs let the team scope the breach quickly, so fewer records are exposed and the investigation costs less."
+    },
+    {
+      "id": "NC-RS-01",
+      "label": "Incident response plan with roles and contact list",
+      "effect": "magnitude",
+      "factor": 0.8,
+      "default_on": true,
+      "note": "Assumption: a rehearsed plan shortens containment and notification, trimming legal, forensic, and customer-credit costs."
+    },
+    {
+      "id": "NC-PR-06",
+      "label": "Encryption in transit: HTTPS only with HSTS",
+      "effect": "frequency",
+      "factor": 0.9,
+      "default_on": true,
+      "note": "Assumption: encrypted connections remove interception of credentials on the wire, a small share of how administrator logins are stolen."
+    }
+  ],
+  "legal": {
+    "id": "sb2610",
+    "label": "Texas SB 2610 safe harbor (no exemplary damages)",
+    "effect": "magnitude_tail",
+    "factor": 0.7,
+    "default_on": true,
+    "note": "When the adopted security framework is maintained (see NC-GV-05), Texas SB 2610 bars exemplary (punitive) damages in a lawsuit after a breach. That removes the worst part of the loss tail, so the factor applies to the upper end of the magnitude distribution rather than to every event. Assumption: exemplary damages account for roughly 30 percent of the largest losses. Switch it off to see what a lapsed program would cost."
+  },
+  "appetite_annual_loss": 150000
+}

@@ -1,0 +1,5 @@
+Contact: https://github.com/TC26-max/Nimbus_Trust_Center/security/advisories/new
+Expires: 2027-09-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://nimbus-trust-center.vercel.app/.well-known/security.txt
+Policy: https://github.com/TC26-max/Nimbus_Trust_Center#responsible-disclosure

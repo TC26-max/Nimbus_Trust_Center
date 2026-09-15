@@ -1,0 +1,224 @@
+{
+  "terms": [
+    {
+      "term": "Control",
+      "plain": "A specific safeguard the company promises to keep in place, such as requiring a second login factor or backing up data every day.",
+      "more": "On this site each control has an owner role, a test procedure, an evidence type, a freshness window, and mappings to framework references. Its status is operating, partial, or planned."
+    },
+    {
+      "term": "Framework",
+      "plain": "A published checklist of security or AI outcomes that many organizations agree to measure themselves against.",
+      "more": "This site uses NIST CSF 2.0, CIS Controls v8.1, SOC 2 Trust Services Criteria, and NIST AI RMF 1.0 as frameworks. Laws and contracts are treated as drivers, not frameworks."
+    },
+    {
+      "term": "Crosswalk",
+      "plain": "A table that shows which of the company's controls satisfy which items in each framework, so one piece of work counts in several places.",
+      "more": "Every control carries mappings to CSF, CIS, SOC 2, and AI RMF identifiers, and the build resolves each identifier against the framework files. An unknown identifier fails the build."
+    },
+    {
+      "term": "Evidence",
+      "plain": "The proof that a control is actually working, such as a test result, a screenshot of a setting, or a signed statement.",
+      "more": "Evidence on this site is automated (produced by the daily evidence job against the live sites), attestation (a role asserts it), or document (a written artifact). Automated evidence is keyed by control in evidence/latest.json."
+    },
+    {
+      "term": "Attestation",
+      "plain": "A statement by a named role that a control was performed, used when there is no machine-readable proof.",
+      "more": "Attestations are the weakest evidence type because they rely on the person asserting them. On this site every attestation is marked simulated; a real program would replace most of them with exports from cloud, identity, and device management systems."
+    },
+    {
+      "term": "Freshness",
+      "plain": "How recently the evidence for a control was collected; old evidence is treated as no evidence.",
+      "more": "Each control has a freshness_days value. The build compares it with the evidence date and reports anything older as stale, which is why automated checks with a two-day window matter more than an annual document."
+    },
+    {
+      "term": "Drift",
+      "plain": "The gap that opens up over time between what a document says and what the system actually does.",
+      "more": "The assistants behind this site lost a hand-off rule and a crisis clause through prompt condensation before a build gate started checking every shipped prompt against a rule list. Drift detection means comparing the running system to the claim on a schedule."
+    },
+    {
+      "term": "Risk register",
+      "plain": "The company's list of things that could go wrong, with how likely and how bad each one is, who owns it, and what is being done.",
+      "more": "Each entry has inherent and residual ratings on a 1 to 5 likelihood by 1 to 5 impact scale, a treatment decision, a key risk indicator, a trend, and links to the controls that reduce it. The register is reviewed quarterly."
+    },
+    {
+      "term": "Inherent risk and residual risk",
+      "plain": "Inherent risk is how bad something would be with no safeguards; residual risk is what is left after the safeguards are applied.",
+      "more": "The difference between the two ratings is the value the linked controls are claimed to provide. A residual score above the appetite line means a decision is required."
+    },
+    {
+      "term": "Risk appetite",
+      "plain": "The amount of risk leadership has decided the company is willing to live with.",
+      "more": "On this site the appetite is a line on the 5 by 5 heat map at a score of 9. Any residual risk above the line must be treated further or explicitly accepted by the accountable executive."
+    },
+    {
+      "term": "KRI",
+      "plain": "A key risk indicator is a number the company watches to see whether a risk is getting closer or further away.",
+      "more": "Good KRIs are leading rather than lagging, such as days since the last access review or the count of expired exceptions. Each risk in the register names one."
+    },
+    {
+      "term": "Treatment (accept, avoid, transfer, mitigate)",
+      "plain": "The decision about what to do with a risk: live with it, stop doing the risky thing, hand it to someone else such as an insurer, or reduce it with controls.",
+      "more": "Most entries in the register are mitigated by linked controls. Accepting a risk above appetite requires a named role and a review date, and transfer usually means insurance or a contract clause."
+    },
+    {
+      "term": "Exception",
+      "plain": "A written, time-limited permission to not follow a control, with a reason and a person who accepted the risk.",
+      "more": "Every exception has a control_id, an accepting role, compensating controls, and an expiry date. An expired exception fails the site build, so a gap cannot quietly become permanent."
+    },
+    {
+      "term": "NIST CSF 2.0",
+      "plain": "The US government's widely used framework for organizing a security program into six functions.",
+      "more": "Version 2.0 (February 2024) added the Govern function to Identify, Protect, Detect, Respond, and Recover. Control IDs on this site follow the CSF functions, and adopting CSF is the basis for the Texas SB 2610 safe harbor."
+    },
+    {
+      "term": "Govern function",
+      "plain": "The part of NIST CSF 2.0 about leadership: who is accountable, what the policies are, how risk decisions get made, and how suppliers are managed.",
+      "more": "Govern outcomes cover organizational context, risk management strategy, roles and responsibilities, policy, oversight, and supply chain. On this site the GV controls carry the charter, appetite, obligations register, policy set, AI use policy, and vendor program."
+    },
+    {
+      "term": "CIS Controls and IG1",
+      "plain": "A prioritized list of practical safeguards; Implementation Group 1 is the minimum set every organization should have.",
+      "more": "CIS Controls v8.1 groups safeguards into IG1, IG2, and IG3 by organizational maturity. The crosswalk tags each CIS mapping with its implementation group so IG1 coverage can be reported on its own."
+    },
+    {
+      "term": "SOC 2 Type II",
+      "plain": "An audit report in which an outside accountant confirms that a company's security controls existed and operated over a period of months.",
+      "more": "Type I covers design at a point in time; Type II covers operating effectiveness over a period, typically 6 to 12 months. The Nimbus SOC 2 report on this site is simulated, but the criteria mappings are real."
+    },
+    {
+      "term": "NIST AI RMF",
+      "plain": "The US government's voluntary guide for managing AI risk, organized as Govern, Map, Measure, and Manage.",
+      "more": "AI RMF 1.0 (January 2023) with the Generative AI Profile (NIST AI 600-1, July 2024). Every AI system in the inventory records one concrete activity per function, because documented AI RMF alignment is an affirmative defense under the Texas AI law."
+    },
+    {
+      "term": "ISO 42001",
+      "plain": "The international standard for an AI management system, the AI equivalent of an ISO 27001 certification.",
+      "more": "ISO/IEC 42001:2023 defines requirements for establishing, operating, and improving an AI management system and can be certified by an accredited body. Nimbus does not hold it; the AI inventory and policies here are structured so a future gap assessment would be straightforward."
+    },
+    {
+      "term": "TRAIGA",
+      "plain": "The Texas Responsible Artificial Intelligence Governance Act, a state law about how companies may deploy AI, in force from January 1, 2026.",
+      "more": "Texas HB 149 is enforced by the Attorney General with a 60-day cure period and makes documented compliance with the NIST AI RMF an affirmative defense. That is why every AI inventory entry here carries a traiga block with a defense statement and a status."
+    },
+    {
+      "term": "SB 2610 safe harbor",
+      "plain": "A Texas law that protects smaller companies from punitive damages after a breach if they had adopted a recognized security framework.",
+      "more": "Effective September 1, 2025, it applies to businesses with fewer than 250 employees. In the 100 to 249 tier the qualifying frameworks include NIST CSF and ISO/IEC 27001, so Nimbus records its CSF adoption decision as a control."
+    },
+    {
+      "term": "EU AI Act Article 50",
+      "plain": "The EU rule that people must be told when they are talking to an AI system.",
+      "more": "Article 50 transparency duties apply from August 2, 2026 and cover chat assistants as limited-risk systems. High-risk obligations were deferred to December 2, 2027; the Nimbus assistants meet Article 50 by disclosing that they are AI and offering a human."
+    },
+    {
+      "term": "PCI DSS SAQ A",
+      "plain": "The lightest form of payment card compliance, available when a company never touches card numbers itself.",
+      "more": "Self-Assessment Questionnaire A under PCI DSS v4.0.1 applies to merchants that fully outsource card handling to a compliant processor. Nimbus qualifies because card data goes straight to the payment processor and never reaches Nimbus systems."
+    },
+    {
+      "term": "GDPR processor and subprocessor",
+      "plain": "Under EU privacy law, a processor handles personal data on a customer's instructions, and a subprocessor is a vendor the processor uses to do part of that work.",
+      "more": "As a processor Nimbus needs a data processing agreement with each EU customer, must report a personal data breach to the controller without undue delay, and must give notice before adding a subprocessor. The vendor register flags which vendors are subprocessors."
+    },
+    {
+      "term": "HIPAA business associate",
+      "plain": "A vendor that handles health information for a healthcare organization and must sign an agreement to protect it.",
+      "more": "Enterprise customers in healthcare can sign a business associate agreement with Nimbus, which brings HIPAA Security Rule duties for that customer's data and specific breach notification terms. Only the Enterprise add-on is in scope."
+    },
+    {
+      "term": "Third-party risk",
+      "plain": "The risk that comes from depending on outside vendors that the company does not control.",
+      "more": "The vendor register tiers each provider by data access and criticality, records assurance reports and contract clauses, and sets a review cadence. Google, Vercel, and GitHub are the real vendors behind the real systems here."
+    },
+    {
+      "term": "Concentration risk",
+      "plain": "The danger of relying on one supplier so heavily that its failure would take the company down with it.",
+      "more": "The assistants and the control mapper all depend on a single model provider and a single hosting platform. The register records this and the provider-flexible design (model chosen by environment variable) is the partial mitigation."
+    },
+    {
+      "term": "Non-human identity",
+      "plain": "A login that belongs to a piece of software rather than a person, such as an API key or a service account.",
+      "more": "Non-human identities outnumber people in most environments and are rarely rotated. The model API key used by the assistants is a standing key rotated manually, which is recorded as a partial control with an exception."
+    },
+    {
+      "term": "Prompt injection",
+      "plain": "Tricking an AI assistant by hiding instructions inside text it reads, such as a pasted document or an edited knowledge base passage.",
+      "more": "The defense is to treat all visitor text as data: cap it, label it untrusted in the prompt, keep the persona server-owned, and validate outputs against an allow-list. The visitor-editable knowledge base on the assistants was an injection channel until edits were capped and labelled."
+    },
+    {
+      "term": "Denial of wallet",
+      "plain": "An attack that runs up the bill on a pay-per-use service by calling it over and over.",
+      "more": "Public model endpoints are the classic target. Per-visitor rate limits, daily caps, input length caps, same-origin rules, and a page token for the voice endpoint bound the spend; the honest limit is that the limiter is per warm serverless instance."
+    },
+    {
+      "term": "Kill switch",
+      "plain": "A fast, documented way to turn an AI system off when it misbehaves.",
+      "more": "On the real systems the procedure is to remove the API_KEY environment variable and redeploy; the health probe then returns ok false and the page shows an unavailable state instead of failing silently. NIST AI RMF calls this the ability to disengage or deactivate."
+    },
+    {
+      "term": "Human oversight",
+      "plain": "Making sure a person stays responsible for what an AI system does, and can step in.",
+      "more": "For the assistants, every escalation ends with a human by email and the model cannot take actions; for the control mapper, output is labelled AI-proposed, analyst confirms. The inventory records the oversight arrangement per system."
+    },
+    {
+      "term": "Model change management",
+      "plain": "Treating a swap of the underlying AI model like any other risky change: test everything again before and after.",
+      "more": "Model names are pinned in configuration and a change runs the full test matrix. The rule comes from a real incident in which a model upgrade billed hidden reasoning tokens against the reply budget and truncated answers mid-sentence."
+    },
+    {
+      "term": "Shadow AI",
+      "plain": "AI tools that employees use for work without the company knowing or approving.",
+      "more": "The risk is customer or internal data leaving through an unvetted service. The control here is an approved tool list, a prohibition on customer data in unapproved tools, and a quarterly review of expense and SaaS discovery data."
+    },
+    {
+      "term": "Content security policy",
+      "plain": "A setting a website sends to browsers that lists exactly which scripts and resources are allowed to run on the page.",
+      "more": "This site and the assistants pin the SHA-256 hash of each inline script in the CSP header, generated at build so it cannot drift from the page. It blocks most cross-site scripting and unauthorized framing."
+    },
+    {
+      "term": "HSTS",
+      "plain": "A browser instruction that says this site must only ever be reached over an encrypted connection.",
+      "more": "HTTP Strict Transport Security is a response header with a max-age that makes the browser refuse plain HTTP for that host. The daily evidence job checks for it on every public URL."
+    },
+    {
+      "term": "Rate limiting",
+      "plain": "Letting each visitor make only so many requests in a window of time, then politely refusing until the window resets.",
+      "more": "The assistants allow 20 chat messages and 10 voice clips per 5 minutes per visitor, keyed on the platform client IP, plus daily caps per warm instance. It bounds cost and abuse; it is not authentication."
+    },
+    {
+      "term": "SLE, ARO, ALE",
+      "plain": "Three numbers for putting a dollar figure on a risk: what one event costs, how often it happens per year, and the two multiplied together.",
+      "more": "Single loss expectancy times annualized rate of occurrence gives annualized loss expectancy. The breach scenario on this site replaces the single point estimates with ranges and simulates them, which is more honest about uncertainty."
+    },
+    {
+      "term": "Loss exceedance curve",
+      "plain": "A chart showing the chance that losses in a year will be bigger than any given amount.",
+      "more": "It is produced by running the scenario many times (Monte Carlo simulation) and sorting the annual losses. Reading the curve at the appetite value gives the probability of exceeding what leadership said it could tolerate."
+    },
+    {
+      "term": "Triangular distribution",
+      "plain": "A simple way to describe an uncertain number with just a minimum, a most likely value, and a maximum.",
+      "more": "The breach scenario uses triangular distributions for event frequency and event cost because they are easy to elicit from experts and easy to explain. The assumptions are labelled as assumptions on the scenario page."
+    },
+    {
+      "term": "Tabletop exercise",
+      "plain": "A rehearsal where the team talks through a pretend emergency step by step to find gaps in the plan.",
+      "more": "Nimbus runs one at least annually with an AI scenario included, such as prompt injection leading to data exposure. Lessons are recorded and assigned, and the AI incident escalation path is exercised."
+    },
+    {
+      "term": "RTO and RPO",
+      "plain": "Recovery time objective is how quickly a service must be back after a failure; recovery point objective is how much recent data it is acceptable to lose.",
+      "more": "Both are set per service in the recovery plan and tested by quarterly restores. The public sites and assistants hold no customer data, so their RPO is looser than the core product's."
+    },
+    {
+      "term": "security.txt",
+      "plain": "A small public file that tells security researchers where to report a problem they found.",
+      "more": "Defined by RFC 9116 and served at /.well-known/security.txt with a Contact line and an Expires date. The daily evidence job fetches it from each public site and warns when it is missing or expired."
+    },
+    {
+      "term": "OWASP LLM Top 10",
+      "plain": "A community list of the ten most common security weaknesses in applications built on large language models.",
+      "more": "Prompt injection, insecure output handling, sensitive information disclosure, and unbounded consumption (denial of wallet) are the entries most relevant here. The untrusted input control on this site (NC-PR-21) cites the list in its notes."
+    }
+  ]
+}

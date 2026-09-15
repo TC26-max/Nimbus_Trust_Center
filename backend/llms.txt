@@ -1,0 +1,17 @@
+# Nimbus Trust Center
+
+> Continuous assurance for a simulated company: real controls, live evidence, governed AI.
+
+Nimbus is a fictional company; all company data is illustrative. The AI assistants, the evidence job, the vendors with trust centers, and the build gates are real and can be inspected.
+
+- Live: https://nimbus-trust-center.vercel.app
+- Source and tests: https://github.com/TC26-max/Nimbus_Trust_Center
+- Version: 1.0.0
+
+## Views
+- #trust: public trust center
+- #overview, #controls, #ai, #evidence, #risks, #vendors, #board, #tested, #glossary: the control room
+
+## API
+- POST /api/map {q}: maps one questionnaire question to up to three controls (rate limited, no storage)
+- GET /api/health: status probe

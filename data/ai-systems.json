@@ -1,0 +1,221 @@
+{
+  "systems": [
+    {
+      "id": "AI-01",
+      "name": "Nimbus Support Assistant",
+      "reality": "real",
+      "status": "production",
+      "purpose": "Answers existing customers' support questions from the Nimbus knowledge base with citations, routes questions versus requests, and hands off to a human with an illustrative ticket when an escalation trigger applies (request for a human, refund beyond the 14-day policy, security or fraud concern, data loss, legal or privacy request, upset user).",
+      "plain": "A chat helper for customers that only answers from the company's own help documents and shows where each answer came from. It cannot change anything on an account; when a person is needed it says so and passes the request on.",
+      "users": "Existing Nimbus customers and public visitors to the demo site",
+      "data_classes": ["public", "customer-account", "support-conversation"],
+      "vendor": "Google",
+      "model": "gemini-2.5-flash with reasoning disabled (thinking budget 0); gemini-embedding-001 for retrieval",
+      "hosting": "Vercel serverless (Node function, deploy root backend/, POST /api/chat)",
+      "runtime": [
+        { "action": "Answer from the knowledge base with citations", "allowed": true, "guard": "retrieval only, top-3 passages, citations required", "approver": "none", "logged": false },
+        { "action": "Create a real ticket or change an account", "allowed": false, "guard": "not implemented; hand-off text plus illustrative ticket ID only", "approver": "human agent", "logged": false },
+        { "action": "Issue refunds or move money", "allowed": false, "guard": "no payment or billing integration exists; persona states it cannot process refunds; a refund request beyond the 14-day policy is handed off", "approver": "human agent (billing)", "logged": false },
+        { "action": "Reveal another customer's data", "allowed": false, "guard": "identity check plus no customer data store behind the demo", "approver": "none", "logged": false },
+        { "action": "Follow instructions found in visitor-edited passages", "allowed": false, "guard": "edits capped, labelled VISITOR-EDITED untrusted, persona rules gated at build", "approver": "none", "logged": false },
+        { "action": "Accept a system-role message from the browser", "allowed": false, "guard": "role whitelist: only user and assistant turns reach the provider; exactly one server-owned system message per request", "approver": "none", "logged": false }
+      ],
+      "human_oversight": "Every escalation ends in a hand-off to a human agent by email; the assistant cannot close, refund, or change anything itself. The identity check (email on file plus workspace URL) is illustrative and low assurance: any values are accepted, nothing is looked up, and the demo values are shown on screen. The page-side claim guard flags any reply that claims an action happened and shows the visitor that nothing was changed. The Product Lead reviews the persona and the findings register after every change.",
+      "logging": "No transcript, prompt, retrieved passage, or model output is written to logs or storage; each request is processed in memory. Server-side logs carry only the provider's error stage, status, and error text on failure, never the visitor's messages or the model's replies. Session counters (asked, grounded, escalated, flagged) live in the visitor's browser and are not sent anywhere. The page loads Vercel Web Analytics for cookieless visit counts, which records page views, not conversation content. Fair use: 20 messages per 5 minutes per visitor keyed on the platform client IP, 600 per day per warm instance, 4,000 characters per message, last 40 turns.",
+      "kill_switch": "Remove the API_KEY environment variable in the Vercel project and redeploy. GET /api/health then returns ok false, the status pill turns off, and the page shows an unavailable state; POST /api/chat refuses with a fixed message and spends nothing. Owner role: Platform Lead. Previous deployments can be promoted back in seconds.",
+      "owner_role": "Product Lead",
+      "review_cadence_days": 180,
+      "last_reviewed": "2026-09-01",
+      "airmf": {
+        "govern": "The persona is server-owned and every required rule (crisis clause, human-request path, injection as data, AI disclosure, no invented prices, cannot perform actions) is gated at build against a shared rule list so a rule cannot silently drop out again.",
+        "map": "The runtime table above lists the six actions the assistant may and may not take, the data classes it touches, and the fact that no customer data store sits behind the demo.",
+        "measure": "Four gates plus an audit probe run on every push: role whitelist, capped and labelled edits, limiter keying, ticket uniqueness, and the claim guard checked against 20 phantom and 20 legitimate phrasings.",
+        "manage": "24 public findings each carry a fix and a gate; the kill switch removes the provider key and the page degrades to a visible unavailable state."
+      },
+      "traiga": { "applies": true, "defense": "NIST AI RMF alignment documented in this inventory: the govern, map, measure, and manage evidence above is linked to source files and test gates.", "status": "aligned" },
+      "eu_ai_act": { "class": "limited risk (Article 50 transparency)", "note": "The page labels both bots as AI assistants and the persona states it is an AI when asked and offers a human hand-off at any time, which meets the Article 50 duty to tell people they are interacting with an AI system." },
+      "linked_controls": ["NC-GV-07", "NC-GV-08", "NC-PR-10", "NC-PR-14", "NC-PR-17", "NC-PR-18", "NC-PR-19", "NC-PR-20", "NC-PR-21", "NC-DE-04", "NC-DE-05", "NC-RS-04"],
+      "linked_risks": ["R-02", "R-03", "R-05", "R-08", "R-09", "R-15"],
+      "evidence_links": [
+        { "label": "Live demo", "url": "https://nimbus-ai-demos.vercel.app" },
+        { "label": "Tested page (findings and gates)", "url": "https://nimbus-ai-demos.vercel.app/#tested" },
+        { "label": "Health probe (drives the status pill)", "url": "https://nimbus-ai-demos.vercel.app/api/health" },
+        { "label": "Chat endpoint source", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/api/chat.js" },
+        { "label": "Shipped persona", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/personas/personas.json" },
+        { "label": "Persona rule list (gated at build)", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/personas/rules.json" },
+        { "label": "Fixes applied 2026-09-01", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/FIXES-APPLIED-2026-09-01.md" },
+        { "label": "UI gate (claim guard 20 plus 20)", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/test/gate-ui.mjs" }
+      ]
+    },
+    {
+      "id": "AI-02",
+      "name": "Nimbus Sales Assistant",
+      "reality": "real",
+      "status": "production",
+      "purpose": "Qualifies website visitors one discovery question at a time, recommends a plan from the published pricing in the knowledge base with citations, and captures a demo request (name and work email first, then company, team size, and use case) that a sales specialist follows up by email.",
+      "plain": "A chat helper for people thinking about buying. It suggests a plan using only the published price list, and if you want a demo it takes your name and work email so a person can follow up. It cannot book a meeting, start a trial, or offer a special deal.",
+      "users": "Prospective customers and public visitors to the demo site",
+      "data_classes": ["public", "lead-contact", "sales-conversation"],
+      "vendor": "Google",
+      "model": "gemini-2.5-flash with reasoning disabled (thinking budget 0); gemini-embedding-001 for retrieval",
+      "hosting": "Vercel serverless (Node function, deploy root backend/, POST /api/chat with bot set to sales)",
+      "runtime": [
+        { "action": "Recommend a plan from published pricing with citations", "allowed": true, "guard": "answers only from the retrieved sources; Enterprise pricing is never quoted, estimated, or anchored", "approver": "none", "logged": false },
+        { "action": "Capture a demo request (name, work email, company, team size, use case)", "allowed": true, "guard": "collected one field at a time and read back; name and work email are the consent step; the details stay in the conversation and are not written to any store", "approver": "sales specialist", "logged": false },
+        { "action": "Book a calendar slot or claim a live transfer", "allowed": false, "guard": "persona states it cannot schedule and never claims a live transfer; the claim guard flags booking claims", "approver": "sales specialist", "logged": false },
+        { "action": "Offer a discount outside the published list", "allowed": false, "guard": "only annual billing and the published 30 percent nonprofit and education discount for verified institutions; no eligibility extension, no false urgency", "approver": "none", "logged": false },
+        { "action": "Start a trial, apply a discount, or change a plan", "allowed": false, "guard": "no account or billing integration; persona states it cannot perform any action and says what happens next by email", "approver": "human", "logged": false },
+        { "action": "State competitor facts or invent customers, metrics, or testimonials", "allowed": false, "guard": "persona rule; no competitor data exists in the knowledge base to retrieve", "approver": "none", "logged": false }
+      ],
+      "human_oversight": "A request for a human is honored immediately: the assistant collects name and work email so a specialist can reach out, and never claims someone is joining the chat. Enterprise and custom-pricing needs are always routed to a person. The page-side claim guard flags any reply that says a demo was booked or a discount applied. The Product Lead reviews the persona and the live matrix (three repeats per behavior) after every change.",
+      "logging": "No transcript, captured lead detail, or model output is written to logs or storage; the demo has no CRM behind it and each request is processed in memory. Server-side logs carry only provider error stage and status codes. The page loads Vercel Web Analytics for cookieless visit counts, which records page views, not conversation content. Fair use: 20 messages per 5 minutes per visitor keyed on the platform client IP, 600 per day per warm instance, shared with the support assistant on the same endpoint.",
+      "kill_switch": "Remove the API_KEY environment variable in the Vercel project and redeploy. GET /api/health then returns ok false, the status pill turns off, and the page shows an unavailable state; the shared chat endpoint refuses with a fixed message. Owner role: Platform Lead.",
+      "owner_role": "Product Lead",
+      "review_cadence_days": 180,
+      "last_reviewed": "2026-09-01",
+      "airmf": {
+        "govern": "The sales persona lost its crisis clause once during prompt condensation; it was restored and the build now fails if any required rule is missing from either persona or from the page's fallback prompt.",
+        "map": "The runtime table records that the assistant qualifies and recommends but cannot book, transfer, discount, or start anything, and that lead details are conversational only.",
+        "measure": "Live behaviors (Enterprise price refusal, discount eligibility, human request, injection, off-topic) are repeated three times per release; the endpoint gate asserts one system message and capped visitor edits.",
+        "manage": "The over-extended student discount finding (G-15) was fixed in the prompt and added to the invented-discount test set; the shared kill switch and fixed error copy contain any provider failure."
+      },
+      "traiga": { "applies": true, "defense": "NIST AI RMF alignment documented in this inventory: purpose, allowed actions, testing, and the escalation path are recorded and linked to the source and the findings register.", "status": "aligned" },
+      "eu_ai_act": { "class": "limited risk (Article 50 transparency)", "note": "The page labels the bot as an AI assistant and the persona states it is an AI when asked and offers a human at any time, which meets the Article 50 disclosure duty for chat systems." },
+      "linked_controls": ["NC-GV-07", "NC-GV-08", "NC-PR-10", "NC-PR-14", "NC-PR-17", "NC-PR-18", "NC-PR-19", "NC-PR-20", "NC-PR-21", "NC-DE-04", "NC-DE-05", "NC-RS-04"],
+      "linked_risks": ["R-02", "R-03", "R-05", "R-08", "R-15"],
+      "evidence_links": [
+        { "label": "Live demo", "url": "https://nimbus-ai-demos.vercel.app" },
+        { "label": "Tested page (findings and gates)", "url": "https://nimbus-ai-demos.vercel.app/#tested" },
+        { "label": "Chat endpoint source", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/api/chat.js" },
+        { "label": "Shipped persona", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/personas/personas.json" },
+        { "label": "Audit 2026-09-01 (crisis clause regression, G-02)", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/AUDIT-2026-09-01.md" },
+        { "label": "Static gate (persona rules, dash sweep, CSP hashes)", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/test/gate-static.mjs" },
+        { "label": "Endpoint gate (role whitelist, caps, limiter, CORS)", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/test/gate-endpoint.mjs" }
+      ]
+    },
+    {
+      "id": "AI-03",
+      "name": "Voice interface",
+      "reality": "real",
+      "status": "production",
+      "purpose": "Lets a visitor speak a question instead of typing it. The browser records a short clip, the server transcribes it through the model provider behind a short-lived page token, the transcript enters the chat as ordinary visitor text, and replies can be read aloud by the browser's own speech synthesis.",
+      "plain": "You can talk to the assistants instead of typing. Your voice clip is turned into text by the server and then thrown away; reading answers aloud happens inside your own browser.",
+      "users": "Public visitors to the demo site who choose the microphone option",
+      "data_classes": ["public", "voice-audio", "support-conversation", "sales-conversation"],
+      "vendor": "Google",
+      "model": "gemini-2.5-flash-lite for speech-to-text, falling back to gemini-2.5-flash; browser speech synthesis for playback",
+      "hosting": "Vercel serverless (Node function, POST /api/transcribe) with the token issued by GET /api/health",
+      "runtime": [
+        { "action": "Transcribe a short voice clip to text", "allowed": true, "guard": "requires the x-demo-token issued by GET /api/health (15-minute expiry); clip capped at about 15 seconds; 10 requests per 5 minutes per visitor and 150 per day per warm instance", "approver": "none", "logged": false },
+        { "action": "Store, replay, or reuse audio", "allowed": false, "guard": "audio is held in memory, sent to the provider once with temperature 0, and discarded; no storage path exists in the handler", "approver": "none", "logged": false },
+        { "action": "Read a reply aloud", "allowed": true, "guard": "browser speech synthesis in the visitor's browser, switched on after a spoken question and toggled by the visitor; no server call and no audio leaves the device", "approver": "none", "logged": false },
+        { "action": "Serve as an anonymous speech-to-text service", "allowed": false, "guard": "401 without a valid token; the token is an HMAC of a timestamp keyed from the deployment secret, so it cannot be minted without the page", "approver": "none", "logged": false },
+        { "action": "Echo provider errors to the browser", "allowed": false, "guard": "fixed error copy (transcription unavailable, provider rate limited); provider status logged server-side only", "approver": "none", "logged": false }
+      ],
+      "human_oversight": "The transcript is sent to the chat as the visitor's own message and shown on screen, so the person sees exactly what was heard and can correct it in the next turn; recording stops automatically at 15 seconds or on a second tap. Everything downstream inherits the support and sales assistant guards, including the hand-off path. The Platform Lead reviews the voice ceilings and the token lifetime with each release.",
+      "logging": "Audio is never written to disk or storage; the handler forwards the clip to the provider once and returns the text. Transcripts are not logged. Server-side logs carry only the model name and provider status code on failure. The microphone permission is scoped to the site by the Permissions-Policy header. Fair use: 10 voice requests per 5 minutes per visitor keyed on the platform client IP, 150 per day per warm instance.",
+      "kill_switch": "Remove the API_KEY environment variable in the Vercel project and redeploy. GET /api/health then returns ok false and stops issuing the page token, so POST /api/transcribe refuses every request, and the page shows an unavailable state for chat and voice together. Owner role: Platform Lead.",
+      "owner_role": "Platform Lead",
+      "review_cadence_days": 180,
+      "last_reviewed": "2026-09-01",
+      "airmf": {
+        "govern": "The voice endpoint was an undocumented anonymous speech-to-text service until audit finding G-20; it is now documented here, gated behind a page token, and owned by the Platform Lead.",
+        "map": "This entry records the exact data path: browser recording, one server-side provider call, no storage, and browser-only playback.",
+        "measure": "The endpoint gate asserts 401 without a token and 200 with one, plus the lower voice ceiling; the UI gate exercises the page under the deploy headers including the microphone Permissions-Policy.",
+        "manage": "The daily ceiling was lowered from 300 to 150 per instance after the audit, and the shared kill switch stops token issuance and transcription in one step."
+      },
+      "traiga": { "applies": true, "defense": "NIST AI RMF alignment documented in this inventory: data path, caps, token control, and test gates are recorded and linked to the source.", "status": "aligned" },
+      "eu_ai_act": { "class": "limited risk (Article 50 transparency)", "note": "The voice feature is an input and output path for the two chat assistants, which disclose that they are AI; the transcript appears on screen as the visitor's own message so nothing is hidden from the person." },
+      "linked_controls": ["NC-GV-07", "NC-GV-08", "NC-PR-10", "NC-PR-14", "NC-PR-18", "NC-PR-19", "NC-PR-20", "NC-RS-04"],
+      "linked_risks": ["R-03", "R-05", "R-08"],
+      "evidence_links": [
+        { "label": "Live demo", "url": "https://nimbus-ai-demos.vercel.app" },
+        { "label": "Transcription endpoint source", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/api/transcribe.js" },
+        { "label": "Health endpoint (issues the page token)", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/api/health.js" },
+        { "label": "Token and client IP helpers", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/lib/security.mjs" },
+        { "label": "Deploy headers including Permissions-Policy", "url": "https://github.com/TC26-max/Service_Agents_Demo/blob/main/backend/vercel.json" },
+        { "label": "Tested page (finding G-20)", "url": "https://nimbus-ai-demos.vercel.app/#tested" }
+      ]
+    },
+    {
+      "id": "AI-04",
+      "name": "Internal coding and writing assistants",
+      "reality": "simulated",
+      "status": "internal",
+      "purpose": "Staff use approved AI assistants to draft code, documentation, summaries, and internal messages under the Acceptable Use and AI Use Policy. Customer content and regulated data are prohibited inputs. A quarterly shadow AI review looks for unapproved tools in expense and SaaS discovery data.",
+      "plain": "Employees may use a short list of approved AI tools to help write code and documents, but they may never paste customer data into them, and every quarter someone checks whether unapproved tools have crept in.",
+      "users": "Nimbus engineering, product, marketing, and operations staff",
+      "data_classes": ["internal", "public"],
+      "vendor": "Multiple (approved list maintained by the IT Lead)",
+      "model": "Varies by tool; enterprise workspaces with training on company data turned off",
+      "hosting": "Vendor SaaS, accessed through single sign-on on managed devices",
+      "runtime": [
+        { "action": "Draft code, documents, and summaries from internal material", "allowed": true, "guard": "approved tools only; the author reviews every output before it is used", "approver": "author", "logged": true },
+        { "action": "Paste customer content, customer account data, or regulated data into any AI tool", "allowed": false, "guard": "prohibited by POL-02; data loss prevention rules on managed devices block known upload patterns", "approver": "Security Lead (exception only)", "logged": true },
+        { "action": "Merge AI-generated code without review", "allowed": false, "guard": "pull request review and the CI gates apply to every change regardless of who or what wrote it", "approver": "code reviewer", "logged": true },
+        { "action": "Adopt a new AI tool for company data", "allowed": false, "guard": "approval request to the IT Lead; the tool is added to this inventory before use; unapproved tools found in the quarterly review are removed", "approver": "IT Lead", "logged": true },
+        { "action": "Send AI-drafted text to a customer as a human message", "allowed": true, "guard": "the sender is accountable for the content; drafts are reviewed and edited before sending; no automated sending", "approver": "sender", "logged": true }
+      ],
+      "human_oversight": "A person is accountable for every output: authors review drafts, reviewers approve code, and the IT Lead approves tools. Nothing runs unattended.",
+      "logging": "Enterprise workspace audit logs from each approved vendor record who used the tool and when; prompt content is retained only as long as the vendor's enterprise retention setting allows and is not copied into Nimbus systems. Expense and SaaS discovery data are reviewed quarterly for unapproved AI services.",
+      "kill_switch": "Disable the tool's single sign-on application in the identity provider and revoke any API tokens; access stops at the next sign-in. Owner role: IT Lead, with the Platform Lead as backup.",
+      "owner_role": "IT Lead",
+      "review_cadence_days": 180,
+      "last_reviewed": "2026-08-20",
+      "airmf": {
+        "govern": "POL-02 names the approved tools, the prohibited inputs, the approval path, and the owner role, and this inventory entry is the record that the tools exist.",
+        "map": "Internal tools touch internal and public data only; the runtime table records that customer and regulated data are prohibited inputs.",
+        "measure": "The quarterly shadow AI review over expense and SaaS discovery data is the only measurement in place; usage and prompt-quality metrics are not collected.",
+        "manage": "Unapproved tools are removed on discovery and the finding goes to the risk register; the kill switch is the identity provider."
+      },
+      "traiga": { "applies": true, "defense": "NIST AI RMF alignment documented in this inventory, with a recorded gap: the shadow AI discovery review is quarterly rather than continuous and no output monitoring exists for internal tools (see NC-PR-22, status partial).", "status": "gap" },
+      "eu_ai_act": { "class": "minimal risk", "note": "Internal productivity tools that do not interact with customers as an AI system carry no Article 50 transparency duty; the general-purpose model obligations sit with the vendors." },
+      "linked_controls": ["NC-GV-07", "NC-GV-08", "NC-PR-19", "NC-PR-22", "NC-RS-04"],
+      "linked_risks": ["R-08", "R-09"],
+      "evidence_links": [
+        { "label": "Inventory entry on this site (simulated system; POL-02 is the governing policy and NC-PR-22 the discovery control)", "url": "#ai" }
+      ]
+    },
+    {
+      "id": "AI-05",
+      "name": "Trust Center control mapper",
+      "reality": "real",
+      "status": "production",
+      "purpose": "This site's own AI feature. A visitor pastes one security questionnaire question or policy paragraph (up to 600 characters); the server shortlists candidate controls by keyword over the control library; the model may choose up to 3 controls from that shortlist and write a one-sentence rationale for each; the server validates every returned ID against the library before anything is shown. Output is labelled AI-proposed, analyst confirms.",
+      "plain": "Paste a question from a customer's security questionnaire and the site suggests up to three of its own controls that answer it, with a reason for each. The suggestion is checked against the real control list before you see it, and it is always marked as a proposal for a person to confirm.",
+      "users": "Visitors to the Trust Center, typically security reviewers and the analyst who answers questionnaires",
+      "data_classes": ["public", "questionnaire-text"],
+      "vendor": "Google",
+      "model": "gemini-2.5-flash via a server-side API key; keyword-only fallback when no key is configured",
+      "hosting": "Vercel serverless (this site's own function), same-origin only",
+      "runtime": [
+        { "action": "Propose up to 3 controls from a server-built shortlist with a one-sentence rationale each", "allowed": true, "guard": "the server shortlists candidates by keyword over the control library; the model may only choose from that shortlist; every returned ID is validated against the library", "approver": "analyst confirms", "logged": false },
+        { "action": "Invent a control ID or edit the control library", "allowed": false, "guard": "IDs outside the shortlist are dropped server-side; the library is read-only data compiled into the site at build", "approver": "none", "logged": false },
+        { "action": "Store the pasted text or the proposal", "allowed": false, "guard": "processed in memory; nothing is written to logs or storage", "approver": "none", "logged": false },
+        { "action": "Follow instructions inside the pasted text", "allowed": false, "guard": "input capped at 600 characters and wrapped as untrusted data; the reply must match a fixed schema of shortlisted IDs and short rationales", "approver": "none", "logged": false },
+        { "action": "Serve other origins or exceed the fair-use cap", "allowed": false, "guard": "same-origin only; 20 requests per 5 minutes per visitor; fixed error copy that never echoes provider text", "approver": "none", "logged": false },
+        { "action": "Run without a model key", "allowed": true, "guard": "falls back to keyword-only proposals, labelled as keyword-only so nobody mistakes them for model output", "approver": "analyst confirms", "logged": false }
+      ],
+      "human_oversight": "Every proposal is labelled AI-proposed, analyst confirms, and nothing on the site changes as a result of a proposal; the analyst decides which control to cite in the questionnaire response. The Security Lead owns the control library the mapper draws from.",
+      "logging": "No pasted text, shortlist, or model output is stored or logged; the function processes each request in memory and returns the validated proposal. Server-side logs carry only provider error status codes. Fair use: 20 requests per 5 minutes per visitor, same-origin only.",
+      "kill_switch": "Remove the API_KEY environment variable in the Vercel project and redeploy. The site's health probe then returns ok false and the mapper shows an unavailable state, or, if the keyword fallback is left enabled, a clearly labelled keyword-only mode with no model call. Owner role: Platform Lead.",
+      "owner_role": "Security Lead",
+      "review_cadence_days": 180,
+      "last_reviewed": "2026-09-01",
+      "airmf": {
+        "govern": "The mapper is inventoried here with an owner role, and the rule that the model can never introduce a control ID is enforced in server code rather than in the prompt.",
+        "map": "The task is narrow and documented: choose from a keyword shortlist and explain, with the analyst as the decision maker and the output labelled accordingly.",
+        "measure": "The site's own Tested page carries injection, invented-ID, cap, and same-origin test cases for the mapper, run by the gates on every push.",
+        "manage": "Invalid IDs are dropped server-side, the keyword-only fallback keeps the feature honest without a key, and the kill switch is the same key removal used for the assistants."
+      },
+      "traiga": { "applies": true, "defense": "NIST AI RMF alignment documented in this inventory: the allow-listed output, the untrusted input wrapper, the analyst confirmation step, and the tests are recorded and linked.", "status": "aligned" },
+      "eu_ai_act": { "class": "minimal risk", "note": "A decision-support tool for the site's own analyst; it interacts with visitors only through a labelled proposal, and the label states that the proposal is AI-generated." },
+      "linked_controls": ["NC-GV-07", "NC-GV-08", "NC-PR-10", "NC-PR-14", "NC-PR-17", "NC-PR-18", "NC-PR-19", "NC-PR-20", "NC-PR-21", "NC-DE-05", "NC-RS-04"],
+      "linked_risks": ["R-02", "R-03", "R-05", "R-08", "R-15"],
+      "evidence_links": [
+        { "label": "Tested page on this site", "url": "#tested" },
+        { "label": "AI inventory on this site", "url": "#ai" }
+      ]
+    }
+  ]
+}

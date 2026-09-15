@@ -1,0 +1,52 @@
+{
+  "exceptions": [
+    {
+      "id": "EX-01",
+      "control_id": "NC-GV-10",
+      "title": "Vendor contract without a breach-notice clause (V-06, Harbor HRIS)",
+      "plain": "The contract with the payroll and employee-records vendor does not say how fast it must tell Nimbus about a breach. The gap is written down with an end date while the clause is negotiated.",
+      "reason": "The Harbor HRIS agreement (V-06) was signed on the vendor's standard paper before the clause checklist existed. It has no breach notification window and no subprocessor change notice. The vendor has agreed in principle to a 72-hour clause at the renewal in early 2027; until then the control is partial for this one vendor.",
+      "risk_accepted_by_role": "Legal and Finance Lead",
+      "opened": "2026-06-05",
+      "expires": "2027-01-31",
+      "compensating": "Quarterly vendor status and security bulletin monitoring (NC-DE-03) with the vendor's incident page checked at each review; data minimization: the system holds staff records only and no customer data, and export access is limited to two named roles; the breach notification procedure (NC-RS-03) treats any vendor report as day zero so the Texas clocks can still be met.",
+      "reality": "simulated"
+    },
+    {
+      "id": "EX-02",
+      "control_id": "NC-PR-05",
+      "title": "Standing model API key instead of a short-lived workload identity",
+      "plain": "The key that lets the assistants call the AI model is a long-lived key that a person changes by hand, rather than a key the platform issues fresh for each job. It is protected in other ways until that is fixed.",
+      "reason": "The AI assistants and the control mapper call the model provider with a standing API key stored as a platform environment variable and rotated manually. A short-lived workload identity issued by the hosting platform is the target state, but the current hosting and provider combination does not offer it without a proxy service that would add a new component to maintain.",
+      "risk_accepted_by_role": "Security Lead",
+      "opened": "2026-07-14",
+      "expires": "2027-03-31",
+      "compensating": "The key is referenced only by server-side code and never shipped to the browser (NC-PR-04); the repository is secret-scanned on every build and daily; public endpoints enforce a per-visitor rate limit, a daily cap and input length caps that bound the spend even if the key is misused through the site (NC-PR-10); the kill switch removes the key and redeploys within 15 minutes (NC-PR-19); rotation is logged in the non-human identity inventory with a 90-day interval while the exception is open.",
+      "reality": "simulated"
+    },
+    {
+      "id": "EX-03",
+      "control_id": "NC-PR-22",
+      "title": "Shadow AI discovery runs quarterly, not continuously",
+      "plain": "Nimbus checks every three months for AI tools staff have started using without approval. A continuous check would catch a slip within days instead of weeks, and that has not been bought yet.",
+      "reason": "Discovery of unapproved AI services relies on the quarterly review of expense reports and browser-extension inventories. A software discovery and data-loss-prevention subscription would make this continuous, but it needs budget and an integration with the identity provider; the board decision is tracked under R-09.",
+      "risk_accepted_by_role": "Chief Operating Officer",
+      "opened": "2026-08-03",
+      "expires": "2026-12-31",
+      "compensating": "AI use policy with prohibited uses and an approval path (NC-GV-07); annual awareness training that covers pasting customer data into outside tools (NC-GV-06); an approved tool list in the AI inventory (NC-GV-08); the data inventory marks which classes may never leave company systems (NC-ID-02); the quarterly review is recorded with findings and removals.",
+      "reality": "simulated"
+    },
+    {
+      "id": "EX-04",
+      "control_id": "NC-DE-04",
+      "title": "No server-side aggregation of AI assistant metrics, by privacy design",
+      "plain": "The assistants show their own answer, refusal and hand-off counts on the page, but Nimbus does not collect those numbers centrally, because doing so would mean recording something about each conversation. Attack testing covers the gap for now.",
+      "reason": "The public assistants process conversations in memory only and store no transcripts (NC-PR-14). Session metrics are computed in the visitor's browser and are not sent to a server, so the monthly drift review works from test runs rather than production aggregates. Adding a privacy-preserving counter (counts only, no content) is planned but has not been designed or reviewed yet.",
+      "risk_accepted_by_role": "Product Lead",
+      "opened": "2026-09-01",
+      "expires": "2027-02-28",
+      "compensating": "Adversarial testing before release and after any model change, covering prompt injection, false authority, policy abuse, data exfiltration and phantom action claims (NC-DE-05); a public findings register with a gate per finding (NC-ID-06); the monthly review runs the gold-set evaluation and the endpoint gate against the live model as a proxy for drift (NC-PR-20).",
+      "reality": "simulated"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Nimbus",
+  "legal_name": "Nimbus, Inc.",
+  "reality": "simulated",
+  "hq_state": "Texas",
+  "hq_city": "Dallas",
+  "employees": 180,
+  "founded": 2019,
+  "product": "Nimbus is a work-management and team-collaboration platform: projects, tasks, dashboards, and automations in one place, where teams plan, track, and ship work.",
+  "customers": "Small and mid-market teams (marketing, product, operations, agencies, and software teams) in the United States and the European Union, including healthcare and financial customers who ask for the SOC 2 report before they buy.",
+  "jurisdictions": [
+    "US",
+    "Texas",
+    "EU"
+  ],
+  "drivers": [
+    "soc2_report",
+    "sb2610",
+    "traiga",
+    "tx_breach",
+    "pci_saq_a",
+    "gdpr",
+    "hipaa_baa",
+    "eu_ai_act"
+  ],
+  "size_tier": "100 to 249 employees; SB 2610 tier requiring NIST CSF or ISO/IEC 27001",
+  "adopted_framework": "NIST CSF 2.0",
+  "plain": "Nimbus is a made-up software company whose product helps teams plan and track their work, invented so this site can show what a complete security and AI governance program looks like for a small Texas business. The two customer-facing AI assistants it runs are real and can be tried, but the company, its staff, its customers, and its numbers are simulated.",
+  "status_page": "status.nimbushq.example",
+  "appetite_ref": "risks.json"
+}

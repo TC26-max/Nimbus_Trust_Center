@@ -1,0 +1,27 @@
+{
+  "name": "nimbus-trust-center",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Nimbus Trust Center: a continuous-assurance GRC control room for a simulated company. Single generated page, one serverless function, a daily evidence job, gated and versioned.",
+  "scripts": {
+    "build": "node build.mjs",
+    "gate:static": "node test/gate-static.mjs",
+    "gate:endpoint": "node test/gate-endpoint.mjs",
+    "gate:ui": "node test/gate-ui.mjs",
+    "eval": "node eval/run.mjs",
+    "eval:live": "node eval/run.mjs --live",
+    "evidence": "node eval/evidence-collect.mjs",
+    "test": "npm run eval && npm run build && npm run gate:static && npm run gate:endpoint && npm run gate:ui",
+    "og": "python3 tools/og-image.py",
+    "shots": "node tools/screenshots.mjs",
+    "deploy": "cd backend && npx vercel --prod"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3",
+    "playwright": "^1.63.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
