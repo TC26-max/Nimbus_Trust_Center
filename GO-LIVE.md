@@ -55,26 +55,28 @@ git push -u origin main
 
 If the repository name differs, change repo_url and security_txt.contact in backend/site.json, run npm test, and commit again.
 
-## 4. Vercel (account tc26-max, team service-agents-demo, new project nimbus-trust-center)
+## 4. Vercel project from the GitHub repository (account tc26-max, team service-agents-demo)
 
-Run the commands one at a time. The login uses the device-code flow if the session expired. When vercel asks: scope service-agents-demo, set up a new project named nimbus-trust-center, the root is the backend folder you are in, no build command, no output override. The three env commands prompt for the value: gemini, gemini-2.5-flash, and the same Gemini key as Nimbus (paste it at the prompt, never commit it).
+Create the project by importing the repository, which also sets up the Git integration: vercel.com/new, Import Git Repository, TC26-max/Nimbus_Trust_Center (install the Vercel GitHub app for that account if asked). On the configure screen: project name nimbus-trust-center, Framework Preset Other, Root Directory backend (click Edit next to the root directory and pick the backend folder), Build Command empty and override off, Output Directory empty and override off. Add the three environment variables on the same screen: PROVIDER = gemini, CHAT_MODEL = gemini-2.5-flash, API_KEY = the Gemini key (paste it, never commit it). Deploy.
+
+Why the root must be backend: the deploy root carries the generated page, the two ESM serverless functions, vercel.json with the CSP, and its own small package.json with "type": "module" so the functions load as ES modules. There is no build step on Vercel; the page is built and committed by npm test at the repository root. If Root Directory is left at the repository root, Vercel runs the root build script and then fails with "No Output Directory named public".
+
+If the first deployment failed with that message: Settings, Build and Deployment, Root Directory backend, Save; confirm Framework Preset Other with no build or output override; confirm the three environment variables under Settings, Environment Variables; then push any commit or use Redeploy on the failed deployment.
+
+From now on every push to main deploys, including the daily evidence commit made by GitHub Actions. Enable Web Analytics under the project's Analytics tab.
+
+If Vercel assigns a URL other than https://nimbus-trust-center.vercel.app, put the real one in backend/site.json (live_url and the self target in evidence_targets), run npm test, commit, and push. The URL is a committed setting so local builds and CI stay identical.
+
+## 5. Link the CLI (one time, for steps 7 and 8)
+
+Run in the backend folder and pick the existing project nimbus-trust-center from the list:
 
 ```bash
 cd backend
 npx vercel login
-npx vercel
-npx vercel env add PROVIDER production
-npx vercel env add CHAT_MODEL production
-npx vercel env add API_KEY production
-npx vercel --prod
+npx vercel link
 cd ..
 ```
-
-If Vercel assigns a URL other than https://nimbus-trust-center.vercel.app, put the real one in backend/site.json (live_url and the self target in evidence_targets), run npm test, commit, push, and deploy again. The URL is a committed setting so local builds and CI stay identical.
-
-## 5. Connect the repository to the Vercel project (makes the daily evidence self-deploying)
-
-In the Vercel dashboard: project nimbus-trust-center, Settings, Git: connect TC26-max/Nimbus_Trust_Center, production branch main, Root Directory backend. From then on every push to main deploys, including the daily evidence commit made by GitHub Actions. Also enable Web Analytics under the project's Analytics tab.
 
 The scheduled job (.github/workflows/evidence.yml) runs at 06:00 UTC daily and can be run by hand from the Actions tab (Run workflow). It needs no secrets: it reads public pages and the repository only.
 

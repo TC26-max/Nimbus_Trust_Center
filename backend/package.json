@@ -1,0 +1,7 @@
+{
+  "name": "nimbus-trust-center-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Deploy root for Nimbus Trust Center: the generated page plus two ESM serverless functions. No dependencies, no build step here; the page is built at the repository root by build.mjs."
+}
