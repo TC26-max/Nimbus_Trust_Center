@@ -67,15 +67,13 @@ From now on every push to main deploys, including the daily evidence commit made
 
 If Vercel assigns a URL other than https://nimbus-trust-center.vercel.app, put the real one in backend/site.json (live_url and the self target in evidence_targets), run npm test, commit, and push. The URL is a committed setting so local builds and CI stay identical.
 
-## 5. Link the CLI (one time, for steps 7 and 8)
+## 5. Link the CLI (one time, for step 8)
 
-Run in the backend folder and pick the existing project nimbus-trust-center from the list:
+Because the project's Root Directory is backend, the CLI is linked and run from the repository root, not from inside backend. Pick the existing project nimbus-trust-center from the list:
 
 ```bash
-cd backend
 npx vercel login
 npx vercel link
-cd ..
 ```
 
 The scheduled job (.github/workflows/evidence.yml) runs at 06:00 UTC daily and can be run by hand from the Actions tab (Run workflow). It needs no secrets: it reads public pages and the repository only.
@@ -120,13 +118,11 @@ git push
 After the first two commands the health probe should return ok false and mapper keyword. The last two put the key back.
 
 ```bash
-cd backend
 npx vercel env rm API_KEY production
 npx vercel --prod
 curl -s https://nimbus-trust-center.vercel.app/api/health
 npx vercel env add API_KEY production
 npx vercel --prod
-cd ..
 ```
 
 ## 9. Publish

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-15T03:36:32.246Z",
+  "generated_at": "2026-09-15T04:25:57.976Z",
   "scope": "full",
   "gates_included": true,
-  "run_id": "local-202609150336",
-  "source_commit": "e09eeeac63d0e41abcfc9f1ed8923f881f8e6092",
+  "run_id": "local-202609150425",
+  "source_commit": "672dbaaaf43945814993aa8c5a35ad01b31281e8",
   "targets": [
     {
       "slug": "trust-center",
@@ -22,10 +22,40 @@
       "control_ids": [
         "NC-PR-06"
       ],
-      "result": "warn",
-      "observed": "This site answered HTTP 404: not deployed yet",
-      "expected": "HTTPS 200 with HSTS and hardening headers once deployed",
+      "result": "pass",
+      "observed": "HTTPS 200; HSTS present (max-age=63072000; includeSubDomains); http redirects to https",
+      "expected": "HTTPS 200, HSTS header present, plain HTTP redirects",
       "source_url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "id": "check.headers.trust-center.csp",
+      "control_ids": [
+        "NC-PR-07"
+      ],
+      "result": "pass",
+      "observed": "CSP present; script-src hash-pinned; frame-ancestors set; 430 chars",
+      "expected": "Content-Security-Policy present with hash-pinned or self-only script-src",
+      "source_url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "id": "check.headers.trust-center.hardening",
+      "control_ids": [
+        "NC-PR-07"
+      ],
+      "result": "pass",
+      "observed": "present: x-content-type-options, frame protection, referrer-policy, permissions-policy",
+      "expected": "nosniff, frame protection, referrer policy, permissions policy",
+      "source_url": "https://nimbus-trust-center.vercel.app"
+    },
+    {
+      "id": "check.security_txt.trust-center",
+      "control_ids": [
+        "NC-ID-07"
+      ],
+      "result": "pass",
+      "observed": "security.txt has Contact; expires 2027-09-01T00:00:00.000Z",
+      "expected": "Contact present and Expires in the future",
+      "source_url": "https://nimbus-trust-center.vercel.app/.well-known/security.txt"
     },
     {
       "id": "check.transport.nimbus",
@@ -82,7 +112,7 @@
         "NC-PR-04"
       ],
       "result": "pass",
-      "observed": "56 files scanned, 0 secret pattern hits",
+      "observed": "57 files scanned, 0 secret pattern hits",
       "expected": "no API key, token, or private key patterns in the repository"
     },
     {
@@ -172,7 +202,7 @@
         "NC-DE-01"
       ],
       "result": "pass",
-      "observed": "evidence job ran at 2026-09-15T03:36:32.246Z with 16 checks",
+      "observed": "evidence job ran at 2026-09-15T04:25:57.976Z with 19 checks",
       "expected": "daily run recorded"
     }
   ]
