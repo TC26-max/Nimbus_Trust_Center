@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-15T04:25:57.976Z",
+  "generated_at": "2026-09-15T11:20:37.768Z",
   "scope": "full",
   "gates_included": true,
-  "run_id": "local-202609150425",
-  "source_commit": "672dbaaaf43945814993aa8c5a35ad01b31281e8",
+  "run_id": "gh-34962753185",
+  "source_commit": "64d03364af0c01e3dde08e899ca951cabe914b0e",
   "targets": [
     {
       "slug": "trust-center",
@@ -112,7 +112,7 @@
         "NC-PR-04"
       ],
       "result": "pass",
-      "observed": "57 files scanned, 0 secret pattern hits",
+      "observed": "56 files scanned, 0 secret pattern hits",
       "expected": "no API key, token, or private key patterns in the repository"
     },
     {
@@ -202,7 +202,7 @@
         "NC-DE-01"
       ],
       "result": "pass",
-      "observed": "evidence job ran at 2026-09-15T04:25:57.976Z with 19 checks",
+      "observed": "evidence job ran at 2026-09-15T11:20:37.768Z with 19 checks",
       "expected": "daily run recorded"
     }
   ]
