@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-15T03:34:31.506Z",
+  "generated_at": "2026-09-15T03:36:32.246Z",
   "scope": "full",
   "gates_included": true,
-  "run_id": "local-202609150334",
-  "source_commit": "a2805a2a9dd740a907c4ccd735a8d73544e06484",
+  "run_id": "local-202609150336",
+  "source_commit": "e09eeeac63d0e41abcfc9f1ed8923f881f8e6092",
   "targets": [
     {
       "slug": "trust-center",
@@ -161,8 +161,8 @@
         "NC-PR-16",
         "NC-PR-20"
       ],
-      "result": "fail",
-      "observed": "npm test exit 1; 104 checks: static 25, endpoint 33, ui 46",
+      "result": "pass",
+      "observed": "npm test exit 0; 104 checks: static 25, endpoint 33, ui 46",
       "expected": "build, eval and all gates pass",
       "source_url": "https://github.com/TC26-max/Nimbus_Trust_Center/actions"
     },
@@ -172,7 +172,7 @@
         "NC-DE-01"
       ],
       "result": "pass",
-      "observed": "evidence job ran at 2026-09-15T03:34:31.506Z with 16 checks",
+      "observed": "evidence job ran at 2026-09-15T03:36:32.246Z with 16 checks",
       "expected": "daily run recorded"
     }
   ]

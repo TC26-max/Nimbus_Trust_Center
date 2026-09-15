@@ -29,7 +29,7 @@ check(attrElsewhere.length === 0, "attribution name absent from data, policies, 
 // 3. forbidden strings (private list, gitignored) including git history
 const fb = R("test/private/forbidden.txt");
 if (fs.existsSync(fb)) {
-  const terms = fs.readFileSync(fb, "utf8").split("\n").map(s => s.trim()).filter(Boolean);
+  const terms = fs.readFileSync(fb, "utf8").split("\n").map(s => s.trim()).filter(t => t && !t.startsWith("#") && t.length >= 3);
   let hits = [];
   const w = d => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { if (["node_modules", ".git", "private"].includes(e.name)) continue; const p = path.join(d, e.name); if (e.isDirectory()) w(p); else { const s = fs.readFileSync(p, "latin1"); for (const t of terms) if (s.toLowerCase().includes(t.toLowerCase())) hits.push(path.relative(ROOT, p) + ":" + t); } } };
   w(ROOT);

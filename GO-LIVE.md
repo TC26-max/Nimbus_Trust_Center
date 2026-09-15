@@ -27,11 +27,12 @@ The seed bundle shipped in the folder was generated without network access (scop
 
 ## 2. Private forbidden-strings list (optional, recommended)
 
-One real name or string per line. The folder is gitignored. The static gate scans files and, once the repository exists, git history.
+The folder is gitignored. The static gate fails if any line of the file appears anywhere in the repository or its git history, so the file must contain only the real strings themselves (one per line, lines starting with # are ignored), never an example sentence. The second command opens the empty file in TextEdit; type the strings, save, close, then run the gate.
 
 ```bash
 mkdir -p test/private
-printf "put one real name or string per line\n" > test/private/forbidden.txt
+touch test/private/forbidden.txt
+open -e test/private/forbidden.txt
 npm run gate:static
 ```
 
