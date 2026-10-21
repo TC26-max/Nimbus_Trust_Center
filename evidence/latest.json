@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-20T11:06:50.171Z",
+  "generated_at": "2026-10-21T11:23:00.632Z",
   "scope": "full",
   "gates_included": true,
-  "run_id": "gh-39412633641",
-  "source_commit": "451093b92f81aeb790258e0367b099ebda9c0a2a",
+  "run_id": "gh-39591526139",
+  "source_commit": "66917299d720cace437895e6b0e90932fc17e39c",
   "targets": [
     {
       "slug": "trust-center",
@@ -133,7 +133,7 @@
         "NC-GV-04"
       ],
       "result": "pass",
-      "observed": "8 policies; review age POL-01 66d, POL-02 53d, POL-03 132d, POL-04 106d, POL-05 154d, POL-06 78d, POL-07 49d, POL-08 146d (window 365d)",
+      "observed": "8 policies; review age POL-01 67d, POL-02 54d, POL-03 133d, POL-04 107d, POL-05 155d, POL-06 79d, POL-07 50d, POL-08 147d (window 365d)",
       "expected": "every policy reviewed inside its review window"
     },
     {
@@ -202,7 +202,7 @@
         "NC-DE-01"
       ],
       "result": "pass",
-      "observed": "evidence job ran at 2026-10-20T11:06:50.171Z with 19 checks",
+      "observed": "evidence job ran at 2026-10-21T11:23:00.632Z with 19 checks",
       "expected": "daily run recorded"
     }
   ]
